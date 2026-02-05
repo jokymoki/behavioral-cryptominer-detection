@@ -3,70 +3,115 @@ import psutil as ps
 from datetime import datetime
 import csv
 
+try:
+  from pynvml import (
+    nvmlInit, nvmlShutdown,
+    nvmlDeviceGetHandleByIndex,
+    nvmlDeviceGetUtilizationRates,
+    nvmlDeviceGetMemoryInfo,
+    nvmlDeviceGetPowerUsage,
+    nvmlDeviceGetTemperature,
+    nvmlDeviceGetClockInfo,
+    NVML_TEMPERATURE_GPU,
+    NVML_CLOCK_SM,
+  )
+  NVML_AVAILABLE = True
+except Exception:
+  NVML_AVAILABLE = False
 
-#consts
+
+# consts
 SCENARIO = "idle"
 OUTFILE = f"telemetry_{SCENARIO}.csv"
-K = 5 #number of top procceses
+K = 5
 
+Hz = 1.0
+period = 1.0 / Hz
 
-Hz = 1.0 #how many times per second we wanna iterate the cycle
-period = 1.0 / Hz #how many seconds lasts one cycle iter
-
-#initializing vars
+# system IO deltas
 prev_net = ps.net_io_counters()
 prev_disk = ps.disk_io_counters()
 prev_t = time.time()
-#---------------------
 
-ps.cpu_percent(None) #warming-up
+ps.cpu_percent(None)  # warm-up cpu%
 
-#---------------------
-#header
+# GPU init
+gpu_handle = None
+if NVML_AVAILABLE:
+  try:
+    nvmlInit()
+    gpu_handle = nvmlDeviceGetHandleByIndex(0)
+  except Exception:
+    gpu_handle = None
+
+
+def read_gpu_metrics(handle):
+  if handle is None:
+    return 0.0, 0.0, 0.0, 0.0, 0.0
+  try:
+    util = float(nvmlDeviceGetUtilizationRates(handle).gpu)
+    mem_used_mb = float(nvmlDeviceGetMemoryInfo(handle).used) / (1024 * 1024)
+    power_w = float(nvmlDeviceGetPowerUsage(handle)) / 1000.0
+    temp_c = float(nvmlDeviceGetTemperature(handle, NVML_TEMPERATURE_GPU))
+    clock_mhz = float(nvmlDeviceGetClockInfo(handle, NVML_CLOCK_SM))
+    return util, mem_used_mb, power_w, temp_c, clock_mhz
+  except Exception:
+    return 0.0, 0.0, 0.0, 0.0, 0.0
+
+
+# -------------------------
+# header
+# -------------------------
 f = open(OUTFILE, "w", newline="", encoding="utf-8")
 writer = csv.writer(f)
-header = ["ts","scenario","cpu","ram","net_in_bps","net_out_bps","disk_read_bps","disk_write_bps"]
 
-for j in range(1, K+1):
-  header += [f"p{j}_cpu", f"p{j}_rss", f"p{j}_threads", f"p{j}_age"]
+header = [
+  "ts","scenario","cpu","ram",
+  "net_in_bps","net_out_bps",
+  "disk_read_bps","disk_write_bps",
+  "gpu_util","gpu_mem_used_mb","gpu_power_w","gpu_temp_c","gpu_clock_mhz"
+]
+
+# per-process: 4 features only (cheapest)
+for j in range(1, K + 1):
+  header += [f"p{j}_cpu", f"p{j}_rss_mb", f"p{j}_threads", f"p{j}_age_s"]
+
 writer.writerow(header)
 
-#---------------------
-i = 0 #counter for .flush()
-proc_warm =False
+# -------------------------
+# state
+# -------------------------
+i = 0
+proc_warm = False
 
 try:
-  
   while True:
-    t0 = time.time() #moment of starting of cycle
+    t0 = time.time()
 
+    # system metrics
     cpu = ps.cpu_percent(None)
     ram = ps.virtual_memory().percent
-    
 
+    # system net/disk throughput
     now_net = ps.net_io_counters()
     now_disk = ps.disk_io_counters()
     now_t = time.time()
 
     dt_io = now_t - prev_t
-  
-    if dt_io <= 0: 
-      net_in_bps = 0.0
-      net_out_bps = 0.0
-      disk_read_bps = 0.0
-      disk_write_bps = 0.0
+    if dt_io <= 0:
+      net_in_bps = net_out_bps = 0.0
+      disk_read_bps = disk_write_bps = 0.0
     else:
       net_out_bps = (now_net.bytes_sent - prev_net.bytes_sent) / dt_io
       net_in_bps = (now_net.bytes_recv - prev_net.bytes_recv) / dt_io
-  
       disk_read_bps = (now_disk.read_bytes - prev_disk.read_bytes) / dt_io
       disk_write_bps = (now_disk.write_bytes - prev_disk.write_bytes) / dt_io
-
 
     prev_net = now_net
     prev_disk = now_disk
     prev_t = now_t
 
+    # warm-up per-process cpu_percent
     if not proc_warm:
       for p in ps.process_iter():
         try:
@@ -75,55 +120,61 @@ try:
           pass
       proc_warm = True
       continue
-    #------------------------
-    # preparing to take top K-proc  
-    items = []
 
+    # collect per-process candidates (cheap)
+    items = []
     for p in ps.process_iter(attrs=["pid", "name"]):
       try:
-        if p.info["name"] == "System Idle Process":
+        pid = p.info["pid"]
+        name = p.info["name"]
+
+        if pid == 0 or name == "System Idle Process":
           continue
+
         cpu_p = p.cpu_percent(None)
-        rss = p.memory_info().rss / (1024*1024)
+        rss_mb = p.memory_info().rss / (1024 * 1024)
         threads = p.num_threads()
-        age = time.time() - p.create_time()
-        items.append((cpu_p, rss, threads, age))
+        age_s = time.time() - p.create_time()
+
+        items.append((cpu_p, rss_mb, threads, age_s))
+
       except (ps.AccessDenied, ps.NoSuchProcess):
         continue
-    
-    #-----------------------------
-    #sorting our top K-procses
 
-    top = sorted(items, reverse=True)[:K]
-   
-    #vectorizing top K-proc data
+    top = sorted(items, key=lambda x: x[0], reverse=True)[:K]
 
     proc_features = []
+    for (cpu_p, rss_mb, threads, age_s) in top:
+      proc_features.extend([cpu_p, rss_mb, threads, age_s])
 
-    for (cpu_p, rss, threads, age) in top:
-      proc_features.extend([cpu_p, rss, threads, age])
-    
-    while len(proc_features) < K * 4: 
-      proc_features.extend([0.0, 0.0, 0.0, 0.0]) #makes sure that it always not less than K*4, needed for correct work of DL model
-    
-    #--------------------------------
+    while len(proc_features) < K * 4:
+      proc_features.extend([0.0] * 4)
 
+    # GPU
+    gpu_util, gpu_mem_mb, gpu_power_w, gpu_temp_c, gpu_clock_mhz = read_gpu_metrics(gpu_handle)
 
     ts = datetime.now().isoformat(timespec="seconds")
-    row = [ts, SCENARIO, cpu, ram, net_in_bps, net_out_bps, disk_read_bps, disk_write_bps]
+    row = [
+      ts, SCENARIO, cpu, ram,
+      net_in_bps, net_out_bps,
+      disk_read_bps, disk_write_bps,
+      gpu_util, gpu_mem_mb, gpu_power_w, gpu_temp_c, gpu_clock_mhz
+    ]
     row += proc_features
     writer.writerow(row)
 
-
-    dt = time.time() - t0 #how much time took operation in cycle
+    dt = time.time() - t0
     time.sleep(max(0.0, period - dt))
-    i+=1
+
+    i += 1
     if i == 49:
-      f.flush() #forcfully writes in file from buffer
+      f.flush()
       i = 0
 
-
 finally:
+  try:
+    if gpu_handle is not None and NVML_AVAILABLE:
+      nvmlShutdown()
+  except Exception:
+    pass
   f.close()
-    
-
