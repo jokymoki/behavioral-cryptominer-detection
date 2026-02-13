@@ -21,7 +21,7 @@ except Exception:
 
 
 # consts
-SCENARIO = "idle"
+SCENARIO = "idle_with_VPN"
 OUTFILE = f"telemetry_{SCENARIO}.csv"
 K = 5
 
