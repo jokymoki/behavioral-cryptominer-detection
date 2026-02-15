@@ -21,7 +21,7 @@ except Exception:
 
 
 # consts
-SCENARIO = "gaming_1"
+SCENARIO = "Spotify"
 OUTFILE = f"telemetry_{SCENARIO}.csv"
 K = 5
 
