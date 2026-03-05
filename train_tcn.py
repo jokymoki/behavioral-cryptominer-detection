@@ -6,7 +6,12 @@ from torch.utils.data import Dataset, DataLoader
 import torch.nn as nn
 import torch.nn.functional as F
 
-NPZ_PATH = r"C:\Users\jokym\Desktop\Project_DL\datasets\windows_T120_H10_S10.npz"
+PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
+NPZ_PATH = os.path.join(PROJECT_DIR, "datasets", "windows_T120_H10_S10.npz")
+CKPT_DIR = os.path.join(PROJECT_DIR, "checkpoints")
+BEST_PATH = os.path.join(CKPT_DIR, "tcn_best.pt")
+LAST_PATH = os.path.join(CKPT_DIR, "tcn_last.pt")
+os.makedirs(CKPT_DIR, exist_ok=True)
 BATCH_SIZE = 64
 NUM_WORKERS = 0
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
@@ -37,9 +42,9 @@ class WindowDataset(Dataset):
     
 
 #1D convert
-class CasualConv1d(nn.Module):
+class CausalConv1d(nn.Module):
     def __init__(self, in_ch, out_ch, kernel_size, dilation=1):
-        super.__init__()
+        super().__init__()
         self.pad = (kernel_size - 1) *dilation #!!!WHATCHOUT TOMOROW
         self.conv = nn.Conv1d(in_ch, out_ch, kernel_size, dilation=dilation)
     
@@ -50,13 +55,13 @@ class CasualConv1d(nn.Module):
     
 #residual-block
 class TCNBlock(nn.Module):
-    def __inti__(self, channels, kernel_size, dilation, dropout=0.1):
+    def __init__(self, channels, kernel_size, dilation, dropout=0.1):
         super().__init__()
-        self.conv1 = CasualConv1d(channels, channels, kernel_size, dilation)
-        self.conv2 = CasualConv1d(channels, channels, kernel_size, dilation)
+        self.conv1 = CausalConv1d(channels, channels, kernel_size, dilation)
+        self.conv2 = CausalConv1d(channels, channels, kernel_size, dilation)
         self.dropout = nn.Dropout(dropout)
     
-    def forwar(self, x):
+    def forward(self, x):
         #x: (B, C, T)
         out = self.conv1(x)
         out = F.relu(out)
@@ -67,7 +72,7 @@ class TCNBlock(nn.Module):
         out = self.dropout(out)
 
         return x + out #residual
-    
+
 
 #backbone
 class TCNBackbone(nn.Module):
@@ -77,7 +82,7 @@ class TCNBackbone(nn.Module):
 
         blocks = []
         for i in range(levels):
-            d = 2**i #1,2,3,4,8,16,32...
+            d = 2**i # 1,2,4,8,16,32...
             blocks.append(TCNBlock(hidden_ch, kernel_size, d, dropout))
         self.blocks = nn.Sequential(*blocks)
     
@@ -87,9 +92,30 @@ class TCNBackbone(nn.Module):
         x = self.blocks(x)   #(B, C, T)
         return x
 
+#TCN Forecasting module
+class TCNForecaster(nn.Module):
+    def __init__(self, in_dim, hidden_ch, H):
+        super().__init__()
+        self.backbone = TCNBackbone(in_dim, hidden_ch)
+        self.H = H
+        out_features = H * in_dim
+        self.head = nn.Linear(hidden_ch, out_features)
+    def forward(self, x):
+        #x: (B, D, T):
+        z = self.backbone(x) #(B, C, T)
+        z_last = z[:,:,-1]   #(B, C) последний timestamp
+        y_flat = self.head(z_last) #(B, H*D)
+        B = x.shape[0]
+        y = y_flat.view(B, self.H, -1) #(B, H, D)
+        return y
+
+
+
 def main():
     #making dataloader
     X_train, Y_train, X_val, Y_val, mu, sigma = load_npz(NPZ_PATH)
+    mu_t = torch.from_numpy(mu.astype(np.float32))
+    sigma_t = torch.from_numpy(sigma.astype(np.float32))
 
     train_ds = WindowDataset(X_train, Y_train)
     val_ds = WindowDataset(X_val, Y_val)
@@ -112,6 +138,99 @@ def main():
     B, T, D = xb.shape
     H = yb.shape[1]
     print(f"T = {T}, H = {H}, D = {D}")
+
+    #temporary checking
+    model = TCNForecaster(in_dim=D, hidden_ch=64, H=H).to(DEVICE)
+    yhat = model(xb_tcn)
+    print("yhat shape:", yhat.shape)
+
+    #error counter
+    criterion = nn.MSELoss()
+
+    #optimizer
+    optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
+
+    #training loop
+    best_val = float("inf")
+    last_val = None
+    num_epochs = 5
+    for epoch in range(num_epochs):
+        model.train()
+        running_loss = 0.0
+
+        for batch_idx, (xb, yb) in enumerate(train_loader):
+            xb = xb.to(DEVICE)
+            yb = yb.to(DEVICE)
+
+            # for Conv1D/TCN we want (B, D, T)
+            xb_tcn = xb.permute(0, 2, 1).contiguous()
+
+            yhat = model(xb_tcn)
+            loss = criterion(yhat, yb)
+
+            optimizer.zero_grad()
+            loss.backward()
+            optimizer.step()
+
+            running_loss += loss.item()
+            if batch_idx % 50 == 0:
+                print(f"epoch {epoch} batch {batch_idx}: loss={loss.item():.6f}")
+
+        avg_loss = running_loss / max(1, len(train_loader))
+        print(f"epoch {epoch} done: avg_train_loss={avg_loss:.6f}")
+
+        #validation loop
+        model.eval()
+        val_running_loss = 0.0
+        with torch.no_grad():
+            for xb, yb in val_loader:
+                xb = xb.to(DEVICE)
+                yb = yb.to(DEVICE)
+
+                xb_tcn = xb.permute(0, 2, 1).contiguous()
+                yhat = model(xb_tcn)
+                vloss = criterion(yhat, yb)
+
+                val_running_loss += vloss.item()
+
+        avg_val_loss = val_running_loss / max(1, len(val_loader))
+        print(f"epoch {epoch} done: avg_val_loss={avg_val_loss:.6f}")
+        last_val = avg_val_loss
+
+        # save last checkpoint every epoch
+        torch.save({
+            "epoch": epoch,
+            "model_state": model.state_dict(),
+            "optimizer_state": optimizer.state_dict(),
+            "val_loss": avg_val_loss,
+            "mu": mu_t,
+            "sigma": sigma_t,
+        }, LAST_PATH)
+
+        # save best checkpoint
+        if avg_val_loss < best_val:
+            best_val = avg_val_loss
+            torch.save({
+                "epoch": epoch,
+                "model_state": model.state_dict(),
+                "optimizer_state": optimizer.state_dict(),
+                "val_loss": avg_val_loss,
+                "mu": mu_t,
+                "sigma": sigma_t,
+            }, BEST_PATH)
+            print(f"new best model saved with val_loss={avg_val_loss:.6f}")
+
+    print(f"training done: best_val={best_val:.6f}, last_val={last_val:.6f}")
+    print(f"checkpoints: best={BEST_PATH}, last={LAST_PATH}")
+
+    # load BEST checkpoint for inference/next steps
+    ckpt = torch.load(BEST_PATH, map_location=DEVICE, weights_only=False)
+    model.load_state_dict(ckpt["model_state"])
+    model.eval()
+    print(f"loaded BEST checkpoint from epoch {ckpt['epoch']} with val_loss={ckpt['val_loss']:.6f}")
+
+
+
     
 
 if __name__ == "__main__":
