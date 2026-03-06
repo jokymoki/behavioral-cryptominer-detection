@@ -11,6 +11,7 @@ NPZ_PATH = os.path.join(PROJECT_DIR, "datasets", "windows_T120_H10_S10.npz")
 CKPT_DIR = os.path.join(PROJECT_DIR, "checkpoints")
 BEST_PATH = os.path.join(CKPT_DIR, "tcn_best.pt")
 LAST_PATH = os.path.join(CKPT_DIR, "tcn_last.pt")
+SCORES_PATH = os.path.join(CKPT_DIR, "val_scores.pt")
 os.makedirs(CKPT_DIR, exist_ok=True)
 BATCH_SIZE = 64
 NUM_WORKERS = 0
@@ -230,8 +231,97 @@ def main():
     print(f"loaded BEST checkpoint from epoch {ckpt['epoch']} with val_loss={ckpt['val_loss']:.6f}")
 
 
+    
+    def compute_basic_scores(pred, target):
+        err = pred - target
+        sq_err = err**2
+
+        feature_mse = sq_err.mean(dim=1) #(B, D)
+        global_mse = feature_mse.mean(dim=1) #(B)
+        vector_l2 = torch.sqrt((feature_mse ** 2).sum(dim=1)) #(B)
+
+        return feature_mse, global_mse, vector_l2
+
 
     
+    
+    all_feature_mse = []
+    all_global_mse = []
+    all_vector_l2 = []
 
+    with torch.no_grad():
+        for xb, yb in val_loader:
+            xb = xb.to(DEVICE)
+            yb = yb.to(DEVICE)
+
+            xb_tcn = xb.permute(0, 2, 1).contiguous()
+            yhat = model(xb_tcn)
+
+            feature_mse, global_mse, vector_l2 = compute_basic_scores(yhat, yb)
+
+            all_feature_mse.append(feature_mse.cpu())
+            all_global_mse.append(global_mse.cpu())
+            all_vector_l2.append(vector_l2.cpu())
+
+    all_feature_mse = torch.cat(all_feature_mse, dim=0)
+    all_global_mse = torch.cat(all_global_mse, dim=0)
+    all_vector_l2 = torch.cat(all_vector_l2, dim=0)
+
+    eps = 1e-8
+
+    feature_err_mean = all_feature_mse.mean(dim=0)   # (D,)
+    feature_err_std = all_feature_mse.std(dim=0)     # (D,)
+
+    z_feature = (all_feature_mse - feature_err_mean) / (feature_err_std + eps)
+    z_feature_pos = torch.clamp(z_feature, min=0.0)
+
+    all_std_score = z_feature_pos.mean(dim=1)        # (N_val,)
+
+    print("all_feature_mse shape:", all_feature_mse.shape)
+    print("all_global_mse shape:", all_global_mse.shape)
+    print("all_vector_l2 shape:", all_vector_l2.shape)
+
+    print("\nGLOBAL MSE STATS")
+    print("mean:", all_global_mse.mean().item())
+    print("std:", all_global_mse.std().item())
+    print("min:", all_global_mse.min().item())
+    print("max:", all_global_mse.max().item())
+    print("p90:", torch.quantile(all_global_mse, 0.90).item())
+    print("p95:", torch.quantile(all_global_mse, 0.95).item())
+    print("p99:", torch.quantile(all_global_mse, 0.99).item())
+
+    print("\nVECTOR L2 STATS")
+    print("mean:", all_vector_l2.mean().item())
+    print("std:", all_vector_l2.std().item())
+    print("min:", all_vector_l2.min().item())
+    print("max:", all_vector_l2.max().item())
+    print("p90:", torch.quantile(all_vector_l2, 0.90).item())
+    print("p95:", torch.quantile(all_vector_l2, 0.95).item())
+    print("p99:", torch.quantile(all_vector_l2, 0.99).item())
+
+    print("\nSTANDARDIZED POSITIVE SCORE STATS")
+    print("mean:", all_std_score.mean().item())
+    print("std:", all_std_score.std().item())
+    print("min:", all_std_score.min().item())
+    print("max:", all_std_score.max().item())
+    print("p90:", torch.quantile(all_std_score, 0.90).item())
+    print("p95:", torch.quantile(all_std_score, 0.95).item())
+    print("p99:", torch.quantile(all_std_score, 0.99).item())
+
+    print("\nfeature_err_mean shape:", feature_err_mean.shape)
+    print("feature_err_std shape:", feature_err_std.shape)
+    print("min feature_err_std:", feature_err_std.min().item())
+    print("max feature_err_std:", feature_err_std.max().item())
+
+    torch.save({
+        "feature_mse": all_feature_mse,
+        "global_mse": all_global_mse,
+        "vector_l2": all_vector_l2,
+        "std_score": all_std_score,
+        "feature_err_mean": feature_err_mean,
+        "feature_err_std": feature_err_std,
+    }, SCORES_PATH)
+
+    print("\nsaved scores to val_scores.pt")
 if __name__ == "__main__":
     main()
