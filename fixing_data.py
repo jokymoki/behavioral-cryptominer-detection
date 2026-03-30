@@ -23,6 +23,9 @@ def clean_one_file(in_path: Path, out_path: Path) -> None:
     df[TIME_COL] = pd.to_datetime(df[TIME_COL], errors="coerce")
     df = df.dropna(subset=[TIME_COL]).sort_values(TIME_COL).reset_index(drop=True)
 
+    # remove duplicate timestamps
+    df = df.drop_duplicates(subset=[TIME_COL], keep="last")
+
     # 2) Drop non-feature columns if present
     for c in DROP_COLS:
         if c in df.columns:
