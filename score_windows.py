@@ -164,7 +164,25 @@ def main():
     feature_err_mean = all_feature_mse.mean(dim=0)
     feature_err_std = all_feature_mse.std(dim=0)
 
-    z_feature = (all_feature_mse - feature_err_mean) / (feature_err_std + eps)
+    STD_FLOOR = 0.05
+    feature_err_std_used = torch.clamp(feature_err_std, min = STD_FLOOR)
+
+    print("\nFEATURE_ERR_STD DIAGNOSTICS")
+    print("feature_err_std shape:", feature_err_std.shape)
+    print("min feature_err_std:", feature_err_std.min().item())
+    print("max feature_err_std:", feature_err_std.max().item())
+    print("mean feature_err_std:", feature_err_std.mean().item())
+
+    sorted_std, sorted_idx = torch.sort(feature_err_std)
+
+    print("\n10 smallest feature_err_std values:")
+    for i in range(min(10, len(sorted_std))):
+        print(
+            f"rank {i+1}: feature_idx={sorted_idx[i].item()}, "
+            f"std={sorted_std[i].item():.10f}"
+        )
+
+    z_feature = (all_feature_mse - feature_err_mean) / feature_err_std_used
     z_feature_pos = torch.clamp(z_feature, min=0.0)
 
     all_std_score = z_feature_pos.mean(dim=1)
@@ -187,14 +205,15 @@ def main():
     for k, v in stats.items():
         print(f"{k}: {v}")
 
-        torch.save(
+    torch.save(
         {
             "feature_mse": all_feature_mse,
             "global_mse": all_global_mse,
             "vector_l2": all_vector_l2,
             "std_score": all_std_score,
             "feature_err_mean": feature_err_mean,
-            "feature_err_std": feature_err_std,
+            "feature_err_std": feature_err_std_used,
+            "feature_err_std_raw": feature_err_std,
         },
         SCORES_OUT_PATH
     )

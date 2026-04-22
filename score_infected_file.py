@@ -8,6 +8,8 @@ import torch.nn.functional as F
 
 PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 CLEAN_DIR = os.path.join(PROJECT_DIR, "clean_data")
+VAL_SCORES_PATH = os.path.join(PROJECT_DIR, "checkpoints", "val_scores_from_script.pt")
+VAL_STATS_PATH = os.path.join(PROJECT_DIR, "checkpoints", "score_stats.json")
 DATASET_PATH = os.path.join(PROJECT_DIR, "datasets", "windows_T120_H10_S10.npz")
 BEST_PATH = os.path.join(PROJECT_DIR, "checkpoints", "tcn_best.pt")
 OUT_PATH = os.path.join(PROJECT_DIR, "checkpoints", "infected_scores.pt")
@@ -117,6 +119,11 @@ def compute_basic_scores(pred, target):
 
     return feature_mse, global_mse, vector_l2
 
+def mean_topk(x: torch.Tensor, k : int) :
+    k = min(k, x.shape[1])
+    topk_vals, _ = torch.topk(x, k=k, dim=1)
+    return topk_vals.mean(dim=1)
+
 
 def main():
     # 1. load infected cleaned csv
@@ -171,31 +178,52 @@ def main():
     global_mse = global_mse.cpu()
     vector_l2 = vector_l2.cpu()
 
-    # 6. standardize using infected file itself for now
-    eps = 1e-8
-    feature_err_mean = feature_mse.mean(dim=0)
-    feature_err_std = feature_mse.std(dim=0)
+    # 6. standardize 
+    baseline = torch.load(VAL_SCORES_PATH, map_location="cpu", weights_only=False)
+
+    feature_err_mean = baseline["feature_err_mean"]
+    feature_err_std = baseline["feature_err_std"]
+
+    if not isinstance(feature_err_mean, torch.Tensor):
+        feature_err_mean = torch.tensor(feature_err_mean, dtype= torch.float32)
+    
+    if not isinstance(feature_err_std, torch.Tensor):
+        feature_err_std = torch.tensor(feature_err_std, dtype=torch.float32)
+
+    eps=1e-8
 
     z_feature = (feature_mse - feature_err_mean) / (feature_err_std + eps)
     z_feature_pos = torch.clamp(z_feature, min=0.0)
-    std_score = z_feature_pos.mean(dim=1)
+
+    std_score_mean = z_feature_pos.mean(dim=1)
+    std_score_max = z_feature_pos.max(dim=1).values
+    std_score_top5 = mean_topk(z_feature_pos, k=5)
 
     # 7. save results
     torch.save(
-        {
-            "feature_mse": feature_mse,
-            "global_mse": global_mse,
-            "vector_l2": vector_l2,
-            "std_score": std_score,
-            "window_timestamps": ts_values.tolist(),
-            "infected_file": INFECTED_FILE,
-        },
+    {
+        "feature_mse": feature_mse,
+        "global_mse": global_mse,
+        "vector_l2": vector_l2,
+        "z_feature": z_feature,
+        "z_feature_pos": z_feature_pos,
+        "std_score_mean": std_score_mean,
+        "std_score_max": std_score_max,
+        "std_score_top5": std_score_top5,
+        "window_timestamps": ts_values.tolist(),
+        "infected_file": INFECTED_FILE,
+        "feature_err_mean_normal": feature_err_mean,
+        "feature_err_std_normal": feature_err_std,
+    },
         OUT_PATH,
     )
 
     print("Saved infected scores to:", OUT_PATH)
-    print("Num windows:", std_score.shape[0])
-    print("std_score min/max:", std_score.min().item(), std_score.max().item())
+    print("Num windows:", feature_mse.shape[0])
+
+    print("std_score_mean min/max:", std_score_mean.min().item(), std_score_mean.max().item())
+    print("std_score_max min/max:", std_score_max.min().item(), std_score_max.max().item())
+    print("std_score_top5 min/max:", std_score_top5.min().item(), std_score_top5.max().item())
 
 
 if __name__ == "__main__":

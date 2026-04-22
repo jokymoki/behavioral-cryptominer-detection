@@ -5,11 +5,12 @@ import torch
 PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 CKPT_DIR = os.path.join(PROJECT_DIR, "checkpoints")
 
-SCORES_PATH = os.path.join(CKPT_DIR, "val_scores_from_script.pt")
+SCORES_PATH = os.path.join(CKPT_DIR, "infected_scores.pt")
 STATS_PATH = os.path.join(CKPT_DIR, "score_stats.json")
 
 STRIDE = 10
 MIN_CONSECUTIVE = 3
+SCORE_KEY = "std_score_top5"
 
 def find_consecutive_runs(flags):
     runs = []
@@ -47,16 +48,19 @@ def main():
     with open(STATS_PATH, "r", encoding="utf-8") as f:
         stats = json.load(f)
     
-    std_score = data["std_score"]
+    score = data[SCORE_KEY]
     threshold = stats["recommended_threshold"]
 
-    if isinstance(std_score, torch.Tensor):
-        std_score = std_score.numpy()
+    if isinstance(score, torch.Tensor):
+        score = score.numpy()
     
+    print("Score key: ", SCORE_KEY)
     print("Threshold:", threshold)
-    print("Total windows:", len(std_score))
+    print("Total windows:", len(score))
+    print("Score min:", float(score.min()))
+    print("Score max:", float(score.max()))
 
-    above = std_score > threshold
+    above = score > threshold
     num_above = int(above.sum())
 
     print("Windows above threshold:", num_above)
