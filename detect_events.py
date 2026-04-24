@@ -5,7 +5,9 @@ import torch
 PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 CKPT_DIR = os.path.join(PROJECT_DIR, "checkpoints")
 
-SCORES_PATH = os.path.join(CKPT_DIR, "infected_scores.pt")
+#SCORES_PATH = os.path.join(CKPT_DIR, "infected_scores.pt")
+SCORES_PATH = os.path.join(CKPT_DIR, "mixed_scores.pt")
+
 STATS_PATH = os.path.join(CKPT_DIR, "score_stats.json")
 
 STRIDE = 10

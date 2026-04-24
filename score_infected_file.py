@@ -12,10 +12,11 @@ VAL_SCORES_PATH = os.path.join(PROJECT_DIR, "checkpoints", "val_scores_from_scri
 VAL_STATS_PATH = os.path.join(PROJECT_DIR, "checkpoints", "score_stats.json")
 DATASET_PATH = os.path.join(PROJECT_DIR, "datasets", "windows_T120_H10_S10.npz")
 BEST_PATH = os.path.join(PROJECT_DIR, "checkpoints", "tcn_best.pt")
-OUT_PATH = os.path.join(PROJECT_DIR, "checkpoints", "infected_scores.pt")
-
+#OUT_PATH = os.path.join(PROJECT_DIR, "checkpoints", "infected_scores.pt")
+OUT_PATH = os.path.join(PROJECT_DIR, "checkpoints", "mixed_scores.pt")
 # put your cleaned infected filename here
-INFECTED_FILE = "telemetry_second_sample_of_virus_clean_1hz.csv"
+#INFECTED_FILE = "telemetry_second_sample_of_virus_clean_1hz.csv"
+INFECTED_FILE = "telemetry_mixed_normal_infected_normal_clean_1hz.csv"
 
 TIME_COL = "ts"
 T = 120
