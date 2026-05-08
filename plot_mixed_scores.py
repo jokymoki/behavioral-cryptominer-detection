@@ -7,6 +7,9 @@ import matplotlib.pyplot as plt
 PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 CKPT_DIR = os.path.join(PROJECT_DIR, "checkpoints")
 
+FIG_DIR = os.path.join(PROJECT_DIR, "figures")
+os.makedirs(FIG_DIR, exist_ok=True)
+
 SCORES_PATH = os.path.join(CKPT_DIR, "mixed_scores.pt")
 STATS_PATH = os.path.join(CKPT_DIR, "score_stats.json")
 
@@ -63,6 +66,7 @@ def main():
     plt.ylabel("score")
     plt.legend()
     plt.tight_layout()
+    plt.savefig(os.path.join(FIG_DIR, "mixed_score_timeline.png"), dpi=300)
     plt.show()
 
     plt.figure(figsize=(13, 5))
@@ -89,6 +93,7 @@ def main():
     plt.ylabel("score (log scale)")
     plt.legend()
     plt.tight_layout()
+    plt.savefig(os.path.join(FIG_DIR, "mixed_score_timeline_log.png"), dpi=300)
     plt.show()
 
 

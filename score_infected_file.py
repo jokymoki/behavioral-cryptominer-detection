@@ -7,7 +7,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
-CLEAN_DIR = os.path.join(PROJECT_DIR, "clean_data")
+CLEAN_DIR = os.path.join(PROJECT_DIR, "clean_data", "mixed")
 VAL_SCORES_PATH = os.path.join(PROJECT_DIR, "checkpoints", "val_scores_from_script.pt")
 VAL_STATS_PATH = os.path.join(PROJECT_DIR, "checkpoints", "score_stats.json")
 DATASET_PATH = os.path.join(PROJECT_DIR, "datasets", "windows_T120_H10_S10.npz")
@@ -17,6 +17,7 @@ OUT_PATH = os.path.join(PROJECT_DIR, "checkpoints", "mixed_scores.pt")
 # put your cleaned infected filename here
 #INFECTED_FILE = "telemetry_second_sample_of_virus_clean_1hz.csv"
 INFECTED_FILE = "telemetry_mixed_normal_infected_normal_clean_1hz.csv"
+OUT_PATH = os.path.join(PROJECT_DIR, "checkpoints", "mixed_scores.pt")
 
 TIME_COL = "ts"
 T = 120

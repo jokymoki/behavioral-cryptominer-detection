@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 
 BASE_DIR = Path(__file__).resolve().parent
-CLEAN_DIR = BASE_DIR / "clean_data"
+CLEAN_DIR = BASE_DIR / "clean_data" / "normal"
 TIME_COL = "ts"
 
 # CONSTS

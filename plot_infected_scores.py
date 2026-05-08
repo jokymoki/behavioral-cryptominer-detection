@@ -7,6 +7,9 @@ import matplotlib.pyplot as plt
 PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 CKPT_DIR = os.path.join(PROJECT_DIR, "checkpoints")
 
+FIG_DIR = os.path.join(PROJECT_DIR, "figures")
+os.makedirs(FIG_DIR, exist_ok=True)
+
 SCORES_PATH = os.path.join(CKPT_DIR, "infected_scores.pt")
 STATS_PATH = os.path.join(CKPT_DIR, "score_stats.json")
 
@@ -46,6 +49,7 @@ def main():
     plt.ylabel("score")
     plt.legend()
     plt.tight_layout()
+    plt.savefig(os.path.join(FIG_DIR, "infected_score_timeline.png"), dpi=300)
     plt.show()
 
     # 2) Log-scale plot for visibility
@@ -58,6 +62,7 @@ def main():
     plt.ylabel("score (log scale)")
     plt.legend()
     plt.tight_layout()
+    plt.savefig(os.path.join(FIG_DIR, "infected_score_timeline_log.png"), dpi=300)
     plt.show()
 
     # 3) Histogram of infected scores
@@ -69,6 +74,7 @@ def main():
     plt.ylabel("count")
     plt.legend()
     plt.tight_layout()
+    plt.savefig(os.path.join(FIG_DIR, "infected_score_hist.png"), dpi=300)
     plt.show()
 
 if __name__ == "__main__":

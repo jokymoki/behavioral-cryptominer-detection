@@ -7,6 +7,9 @@ import matplotlib.pyplot as plt
 PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 CKPT_DIR = os.path.join(PROJECT_DIR, "checkpoints")
 
+FIG_DIR = os.path.join(PROJECT_DIR, "figures")
+os.makedirs(FIG_DIR, exist_ok=True)
+
 VAL_SCORES_PATH = os.path.join(CKPT_DIR, "val_scores_from_script.pt")
 INFECTED_SCORES_PATH = os.path.join(CKPT_DIR, "infected_scores.pt")
 STATS_PATH = os.path.join(CKPT_DIR, "score_stats.json")
@@ -65,6 +68,7 @@ def main():
     plt.ylabel("count")
     plt.legend()
     plt.tight_layout()
+    plt.savefig(os.path.join(FIG_DIR, "normal_vs_infected_hist.png"), dpi=300)
     plt.show()
 
     # 2) Log-x histogram for visibility
@@ -87,6 +91,7 @@ def main():
     plt.ylabel("count")
     plt.legend()
     plt.tight_layout()
+    plt.savefig(os.path.join(FIG_DIR, "normal_vs_infected_hist_log.png"), dpi=300)
     plt.show()
 
     # 3) Boxplot comparison
@@ -97,6 +102,7 @@ def main():
     plt.ylabel("score")
     plt.legend()
     plt.tight_layout()
+    plt.savefig(os.path.join(FIG_DIR, "normal_vs_infected_boxplot.png"), dpi=300)
     plt.show()
 
 

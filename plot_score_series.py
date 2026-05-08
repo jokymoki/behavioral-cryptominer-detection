@@ -4,6 +4,10 @@ import os
 
 PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 CKPT_DIR = os.path.join(PROJECT_DIR, "checkpoints")
+
+FIG_DIR = os.path.join(PROJECT_DIR, "figures")
+os.makedirs(FIG_DIR, exist_ok=True)
+
 SCORES_PATH = os.path.join(CKPT_DIR, "val_scores.pt")
 
 data = torch.load(SCORES_PATH, map_location="cpu", weights_only=False)
@@ -19,6 +23,7 @@ plt.title("Global MSE validation windows")
 plt.xlabel("window index")
 plt.ylabel("score")
 plt.tight_layout()
+plt.savefig(os.path.join(FIG_DIR, "val_global_mse_series.png"), dpi=300)
 plt.show()
 
 #Vector l2 dstr
@@ -28,6 +33,7 @@ plt.title("Vector L2 validation windows")
 plt.xlabel("window index")
 plt.ylabel("score")
 plt.tight_layout()
+plt.savefig(os.path.join(FIG_DIR, "val_vector_l2_series.png"), dpi=300)
 plt.show()
 
 #Stand pos score dstr
@@ -37,6 +43,7 @@ plt.title("Standartized positive score validation windows")
 plt.xlabel("window index")
 plt.ylabel("score")
 plt.tight_layout()
+plt.savefig(os.path.join(FIG_DIR, "val_std_score_series.png"), dpi=300)
 plt.show()
 
 #Threshold
@@ -48,4 +55,5 @@ plt.axhline(threshold, color="red")
 plt.title("Standartized score with threshold")
 plt.xlabel("window index")
 plt.ylabel("score")
+plt.savefig(os.path.join(FIG_DIR, "val_std_score_threshold.png"), dpi=300)
 plt.show()

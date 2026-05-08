@@ -4,6 +4,11 @@ import os
 
 PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 CKPT_DIR = os.path.join(PROJECT_DIR, "checkpoints")
+
+FIG_DIR = os.path.join(PROJECT_DIR, "figures")
+os.makedirs(FIG_DIR, exist_ok=True)
+
+
 SCORES_PATH = os.path.join(CKPT_DIR, "val_scores.pt")
 
 data = torch.load(SCORES_PATH, map_location="cpu", weights_only=False)
@@ -19,6 +24,7 @@ plt.title("Global MSE distribution")
 plt.xlabel("scores")
 plt.ylabel("count")
 plt.tight_layout()
+plt.savefig(os.path.join(FIG_DIR, "val_global_mse_hist.png"), dpi=300)
 plt.show()
 
 #Vector l2 dstr
@@ -28,6 +34,7 @@ plt.title("Vector L2 Distribution")
 plt.xlabel("score")
 plt.ylabel("count")
 plt.tight_layout()
+plt.savefig(os.path.join(FIG_DIR, "val_vector_l2_hist.png"), dpi=300)
 plt.show()
 
 #Stand pos score dstr
@@ -37,4 +44,5 @@ plt.title("Standartized positive score distribution")
 plt.xlabel("score")
 plt.ylabel("count")
 plt.tight_layout()
+plt.savefig(os.path.join(FIG_DIR, "val_std_score_hist.png"), dpi=300)
 plt.show()

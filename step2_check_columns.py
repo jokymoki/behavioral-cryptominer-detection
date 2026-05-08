@@ -2,7 +2,7 @@ import pandas as pd
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent
-CLEAN_DIR = BASE_DIR / "clean_data"
+CLEAN_DIR = BASE_DIR / "clean_data" / "normal"
 
 TIME_COL = "ts"
 
