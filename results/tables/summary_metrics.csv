@@ -1,0 +1,4 @@
+dataset,files,threshold,mean_precision,mean_recall,mean_f1,mean_FPR,mean_positive_rate
+validation_normal,-,1.1346746683120728,-,-,-,-,-
+infected_only,5,1.1346746683120728,-,-,-,-,1.0
+mixed,5,1.1346746683120728,0.8677199382818929,0.9650943396226414,0.913811501928666,0.08403952233739467,0.40453957782047106

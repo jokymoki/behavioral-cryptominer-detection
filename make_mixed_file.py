@@ -3,11 +3,17 @@ import pandas as pd
 
 BASE_DIR = Path(__file__).resolve().parent
 CLEAN_DIR = BASE_DIR / "clean_data"
+NORMAL_DIR = CLEAN_DIR / "normal"
+INFECTED_DIR = CLEAN_DIR / "infected"
+MIXED_DIR = CLEAN_DIR / "mixed"
 
 NORMAL_FILE = "telemetry_Spotify_clean_1hz.csv"
-INFECTED_FILE = "telemetry_second_sample_of_virus_clean_1hz.csv"
-
-OUT_FILE = "telemetry_mixed_normal_infected_normal_clean_1hz.csv"
+INFECTED_FILES = [
+    "telemetry_browser_YTSAGCYTW_infected_by_sample1_clean_1hz.csv",
+    "telemetry_infected_sample_tag_monero_clean_1hz.csv",
+    "telemetry_infected_sample_tag_monero_with_browser_act_clean_1hz.csv",
+    "telemetry_stock_activity_infected_by_sample1_clean_1hz.csv",
+]
 
 TIME_COL = "ts"
 
@@ -16,10 +22,25 @@ INFECTED_ROWS = 2000
 NORMAL_AFTER_ROWS = 2000
 
 
-def main():
-    normal_path = CLEAN_DIR / NORMAL_FILE
-    infected_path = CLEAN_DIR / INFECTED_FILE
+def take_rows_with_wrap(df: pd.DataFrame, start: int, count: int) -> pd.DataFrame:
+    if len(df) == 0:
+        raise ValueError("Cannot take rows from an empty dataframe")
 
+    parts = []
+    remaining = count
+    current = start
+
+    while remaining > 0:
+        wrapped_start = current % len(df)
+        chunk_size = min(remaining, len(df) - wrapped_start)
+        parts.append(df.iloc[wrapped_start:wrapped_start + chunk_size])
+        remaining -= chunk_size
+        current += chunk_size
+
+    return pd.concat(parts, axis=0, ignore_index=True).copy()
+
+
+def make_mixed_file(normal_path: Path, infected_path: Path, out_path: Path) -> None:
     normal = pd.read_csv(normal_path)
     infected = pd.read_csv(infected_path)
 
@@ -35,9 +56,15 @@ def main():
     if normal_cols != infected_cols:
         raise ValueError("Column mismatch between normal and infected files")
 
-    normal_before = normal.iloc[:NORMAL_BEFORE_ROWS].copy()
+    if len(infected) < INFECTED_ROWS:
+        raise ValueError(
+            f"{infected_path.name}: need at least {INFECTED_ROWS} infected rows, "
+            f"got {len(infected)}"
+        )
+
+    normal_before = take_rows_with_wrap(normal, 0, NORMAL_BEFORE_ROWS)
     infected_part = infected.iloc[:INFECTED_ROWS].copy()
-    normal_after = normal.iloc[NORMAL_BEFORE_ROWS:NORMAL_BEFORE_ROWS + NORMAL_AFTER_ROWS].copy()
+    normal_after = take_rows_with_wrap(normal, NORMAL_BEFORE_ROWS, NORMAL_AFTER_ROWS)
 
     mixed = pd.concat(
         [normal_before, infected_part, normal_after],
@@ -53,7 +80,7 @@ def main():
         freq="1s"
     )
 
-    out_path = CLEAN_DIR / OUT_FILE
+    out_path.parent.mkdir(parents=True, exist_ok=True)
     mixed.to_csv(out_path, index=False)
 
     print("Saved mixed file to:", out_path)
@@ -63,6 +90,24 @@ def main():
     print(f"normal before: rows 0..{NORMAL_BEFORE_ROWS - 1}")
     print(f"infected: rows {NORMAL_BEFORE_ROWS}..{NORMAL_BEFORE_ROWS + INFECTED_ROWS - 1}")
     print(f"normal after: rows {NORMAL_BEFORE_ROWS + INFECTED_ROWS}..{len(mixed) - 1}")
+    if len(normal) < NORMAL_BEFORE_ROWS + NORMAL_AFTER_ROWS:
+        print(f"normal source wrapped because it has only {len(normal)} rows")
+    print()
+
+
+def main():
+    normal_path = NORMAL_DIR / NORMAL_FILE
+
+    print("Normal source:", normal_path)
+    print("Creating mixed files in:", MIXED_DIR)
+    print()
+
+    for infected_file in INFECTED_FILES:
+        infected_path = INFECTED_DIR / infected_file
+        sample_name = infected_file.removeprefix("telemetry_").removesuffix("_clean_1hz.csv")
+        out_name = f"telemetry_mixed_normal_{sample_name}_normal_clean_1hz.csv"
+        out_path = MIXED_DIR / out_name
+        make_mixed_file(normal_path, infected_path, out_path)
 
 
 if __name__ == "__main__":

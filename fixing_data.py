@@ -63,7 +63,7 @@ def clean_one_file(in_path: Path, out_path: Path) -> None:
     df_out = df.reset_index().rename(columns={"index": TIME_COL})
     df_out.to_csv(out_path, index=False)
 
-    print("✅", in_path.name)
+    print("[OK]", in_path.name)
     print(f"   rows_out: {len(df_out)} | cols: {len(df_out.columns)}")
     print(f"   NaNs before: {nans_before} | NaNs after: {nans_after}")
     print(f"   Non-1s steps after: {bad_steps} (should be 0)")
@@ -76,7 +76,7 @@ def main():
 
     files = sorted(RAW_DIR.glob("*.csv"))
     if not files:
-        print(f"❌ No CSV files found in: {RAW_DIR.resolve()}")
+        print(f"[ERROR] No CSV files found in: {RAW_DIR.resolve()}")
         print("Put your raw telemetry CSVs into raw_data/ and run again.")
         return
 
@@ -88,7 +88,7 @@ def main():
         try:
             clean_one_file(in_path, out_path)
         except Exception as e:
-            print("❌ ERROR on", in_path.name)
+            print("[ERROR] ERROR on", in_path.name)
             print("   ", repr(e))
             print()
 

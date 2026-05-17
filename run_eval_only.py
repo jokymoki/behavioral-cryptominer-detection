@@ -6,11 +6,9 @@ BASE_DIR = Path(__file__).resolve().parent
 
 SCRIPTS = [
     "score_windows.py",
-    "score_infected_file.py",
-    "evaluate_experiments.py",
-    "plot_mixed_scores.py",
-    "plot_normal_vs_infected.py",
-    "plot_infected_scores.py",
+    "score_infected_dataset.py",
+    "score_mixed_dataset.py",
+    "make_report_artifacts.py",
 ]
 
 def run_script(script_name):
@@ -23,7 +21,7 @@ def run_script(script_name):
     print()
     print("=" * 80)
     print(f"Running: {script_name}")
-    print("=" * 80)
+    print("=" * 80, flush=True)
 
     result = subprocess.run(
         [sys.executable, str(script_path)],
@@ -37,8 +35,10 @@ def run_script(script_name):
     
 
 def main():
-    print("Starting evaluation-only pipeline")
-    print("This pipeline does NOT rebuild dataset and does NOT train the model.")
+    print("Starting evaluation-only pipeline", flush=True)
+    print("This pipeline does NOT rebuild dataset and does NOT train the model.", flush=True)
+    print("It prints validation, infected-only, and mixed-scenario results.", flush=True)
+    print("It also saves report tables and figures.", flush=True)
 
     for script in SCRIPTS:
         run_script(script)
