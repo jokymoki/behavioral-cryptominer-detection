@@ -1,0 +1,47 @@
+{
+  "horizon": 20,
+  "T": 120,
+  "S": 10,
+  "normal_files": [
+    {
+      "file": "telemetry_gaming_1_clean_1hz.csv",
+      "rows": 4586,
+      "windows": 445
+    },
+    {
+      "file": "telemetry_gaming_clean_1hz.csv",
+      "rows": 5113,
+      "windows": 498
+    },
+    {
+      "file": "telemetry_idle_with_VPN_clean_1hz.csv",
+      "rows": 3876,
+      "windows": 374
+    },
+    {
+      "file": "telemetry_idle_without_VPN_clean_1hz.csv",
+      "rows": 3614,
+      "windows": 348
+    },
+    {
+      "file": "telemetry_Spotify_clean_1hz.csv",
+      "rows": 3752,
+      "windows": 362
+    },
+    {
+      "file": "telemetry_Twitch_clean_1hz.csv",
+      "rows": 7466,
+      "windows": 733
+    },
+    {
+      "file": "telemetry_Youtube_clean_1hz.csv",
+      "rows": 5053,
+      "windows": 492
+    }
+  ],
+  "total_windows": 3252,
+  "train_windows": 2601,
+  "val_windows": 651,
+  "features": 31,
+  "dataset_path": "runs\\H020\\dataset\\windows.npz"
+}

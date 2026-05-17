@@ -3,3 +3,4 @@ pandas
 torch
 psutil
 matplotlib
+scikit-learn

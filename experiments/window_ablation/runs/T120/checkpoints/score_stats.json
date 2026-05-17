@@ -1,0 +1,10 @@
+{
+  "num_val_windows": 652,
+  "std_score_mean": 0.26075252890586853,
+  "std_score_std": 0.2713410258293152,
+  "std_score_min": 0.0,
+  "std_score_max": 2.4259250164031982,
+  "std_score_p95": 0.7240903973579407,
+  "std_score_p99": 1.1826220750808716,
+  "recommended_threshold": 1.1826220750808716
+}

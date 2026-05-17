@@ -1,0 +1,361 @@
+{
+  "horizon": 30,
+  "score_key": "std_score_top5",
+  "threshold": 1.2050540447235107,
+  "window_config": {
+    "T": 120,
+    "H": 30,
+    "stride": 10
+  },
+  "true_infected_interval_sec": {
+    "start": 2000,
+    "end": 4000
+  },
+  "aggregate_metrics": {
+    "mean_precision": 0.8885496225922379,
+    "mean_recall": 0.9757009345794392,
+    "mean_f1_score": 0.9300779476731218,
+    "mean_false_positive_rate": 0.07132100027888816,
+    "mean_detection_delay_sec": -1810.0
+  },
+  "files": [
+    {
+      "file": "telemetry_mixed_normal_browser_YTSAGCYTW_infected_by_sample1_normal_clean_1hz.csv",
+      "rows": 6000,
+      "windows": 586,
+      "score_min": 0.0,
+      "score_mean": 254.94955444335938,
+      "score_max": 859.8659057617188,
+      "positive_windows": 235,
+      "positive_window_rate": 0.40102389078498296,
+      "confusion_matrix": {
+        "TP": 208,
+        "FP": 27,
+        "FN": 6,
+        "TN": 345
+      },
+      "metrics": {
+        "precision": 0.8851063829787233,
+        "recall": 0.9719626168224299,
+        "f1_score": 0.9265033407572382,
+        "false_positive_rate": 0.07258064516129033
+      },
+      "first_event_start_sec": 190,
+      "detection_delay_sec": -1810,
+      "events": [
+        {
+          "start_window": 19,
+          "end_window": 21,
+          "length_windows": 3,
+          "start_sec": 190,
+          "end_sec": 210
+        },
+        {
+          "start_window": 95,
+          "end_window": 97,
+          "length_windows": 3,
+          "start_sec": 950,
+          "end_sec": 970
+        },
+        {
+          "start_window": 186,
+          "end_window": 392,
+          "length_windows": 207,
+          "start_sec": 1860,
+          "end_sec": 3920
+        },
+        {
+          "start_window": 434,
+          "end_window": 436,
+          "length_windows": 3,
+          "start_sec": 4340,
+          "end_sec": 4360
+        },
+        {
+          "start_window": 523,
+          "end_window": 525,
+          "length_windows": 3,
+          "start_sec": 5230,
+          "end_sec": 5250
+        },
+        {
+          "start_window": 560,
+          "end_window": 564,
+          "length_windows": 5,
+          "start_sec": 5600,
+          "end_sec": 5640
+        }
+      ],
+      "scores_path": "runs\\H030\\scores\\mixed\\telemetry_mixed_normal_browser_YTSAGCYTW_infected_by_sample1_normal_clean_1hz_scores.pt"
+    },
+    {
+      "file": "telemetry_mixed_normal_infected_normal_clean_1hz.csv",
+      "rows": 5752,
+      "windows": 561,
+      "score_min": 0.0,
+      "score_mean": 252.34375,
+      "score_max": 5668.421875,
+      "positive_windows": 232,
+      "positive_window_rate": 0.41354723707664887,
+      "confusion_matrix": {
+        "TP": 209,
+        "FP": 23,
+        "FN": 5,
+        "TN": 324
+      },
+      "metrics": {
+        "precision": 0.9008620689655172,
+        "recall": 0.9766355140186916,
+        "f1_score": 0.937219730941704,
+        "false_positive_rate": 0.06628242074927954
+      },
+      "first_event_start_sec": 190,
+      "detection_delay_sec": -1810,
+      "events": [
+        {
+          "start_window": 19,
+          "end_window": 21,
+          "length_windows": 3,
+          "start_sec": 190,
+          "end_sec": 210
+        },
+        {
+          "start_window": 95,
+          "end_window": 97,
+          "length_windows": 3,
+          "start_sec": 950,
+          "end_sec": 970
+        },
+        {
+          "start_window": 186,
+          "end_window": 394,
+          "length_windows": 209,
+          "start_sec": 1860,
+          "end_sec": 3940
+        },
+        {
+          "start_window": 434,
+          "end_window": 436,
+          "length_windows": 3,
+          "start_sec": 4340,
+          "end_sec": 4360
+        },
+        {
+          "start_window": 523,
+          "end_window": 525,
+          "length_windows": 3,
+          "start_sec": 5230,
+          "end_sec": 5250
+        }
+      ],
+      "scores_path": "runs\\H030\\scores\\mixed\\telemetry_mixed_normal_infected_normal_clean_1hz_scores.pt"
+    },
+    {
+      "file": "telemetry_mixed_normal_infected_sample_tag_monero_normal_clean_1hz.csv",
+      "rows": 6000,
+      "windows": 586,
+      "score_min": 0.0,
+      "score_mean": 283.18634033203125,
+      "score_max": 2230.239501953125,
+      "positive_windows": 236,
+      "positive_window_rate": 0.40273037542662116,
+      "confusion_matrix": {
+        "TP": 209,
+        "FP": 27,
+        "FN": 5,
+        "TN": 345
+      },
+      "metrics": {
+        "precision": 0.885593220338983,
+        "recall": 0.9766355140186916,
+        "f1_score": 0.9288888888888889,
+        "false_positive_rate": 0.07258064516129033
+      },
+      "first_event_start_sec": 190,
+      "detection_delay_sec": -1810,
+      "events": [
+        {
+          "start_window": 19,
+          "end_window": 21,
+          "length_windows": 3,
+          "start_sec": 190,
+          "end_sec": 210
+        },
+        {
+          "start_window": 95,
+          "end_window": 97,
+          "length_windows": 3,
+          "start_sec": 950,
+          "end_sec": 970
+        },
+        {
+          "start_window": 186,
+          "end_window": 394,
+          "length_windows": 209,
+          "start_sec": 1860,
+          "end_sec": 3940
+        },
+        {
+          "start_window": 434,
+          "end_window": 436,
+          "length_windows": 3,
+          "start_sec": 4340,
+          "end_sec": 4360
+        },
+        {
+          "start_window": 523,
+          "end_window": 525,
+          "length_windows": 3,
+          "start_sec": 5230,
+          "end_sec": 5250
+        },
+        {
+          "start_window": 560,
+          "end_window": 564,
+          "length_windows": 5,
+          "start_sec": 5600,
+          "end_sec": 5640
+        }
+      ],
+      "scores_path": "runs\\H030\\scores\\mixed\\telemetry_mixed_normal_infected_sample_tag_monero_normal_clean_1hz_scores.pt"
+    },
+    {
+      "file": "telemetry_mixed_normal_infected_sample_tag_monero_with_browser_act_normal_clean_1hz.csv",
+      "rows": 6000,
+      "windows": 586,
+      "score_min": 0.0,
+      "score_mean": 361.90087890625,
+      "score_max": 13484.013671875,
+      "positive_windows": 236,
+      "positive_window_rate": 0.40273037542662116,
+      "confusion_matrix": {
+        "TP": 209,
+        "FP": 27,
+        "FN": 5,
+        "TN": 345
+      },
+      "metrics": {
+        "precision": 0.885593220338983,
+        "recall": 0.9766355140186916,
+        "f1_score": 0.9288888888888889,
+        "false_positive_rate": 0.07258064516129033
+      },
+      "first_event_start_sec": 190,
+      "detection_delay_sec": -1810,
+      "events": [
+        {
+          "start_window": 19,
+          "end_window": 21,
+          "length_windows": 3,
+          "start_sec": 190,
+          "end_sec": 210
+        },
+        {
+          "start_window": 95,
+          "end_window": 97,
+          "length_windows": 3,
+          "start_sec": 950,
+          "end_sec": 970
+        },
+        {
+          "start_window": 186,
+          "end_window": 394,
+          "length_windows": 209,
+          "start_sec": 1860,
+          "end_sec": 3940
+        },
+        {
+          "start_window": 434,
+          "end_window": 436,
+          "length_windows": 3,
+          "start_sec": 4340,
+          "end_sec": 4360
+        },
+        {
+          "start_window": 523,
+          "end_window": 525,
+          "length_windows": 3,
+          "start_sec": 5230,
+          "end_sec": 5250
+        },
+        {
+          "start_window": 560,
+          "end_window": 564,
+          "length_windows": 5,
+          "start_sec": 5600,
+          "end_sec": 5640
+        }
+      ],
+      "scores_path": "runs\\H030\\scores\\mixed\\telemetry_mixed_normal_infected_sample_tag_monero_with_browser_act_normal_clean_1hz_scores.pt"
+    },
+    {
+      "file": "telemetry_mixed_normal_stock_activity_infected_by_sample1_normal_clean_1hz.csv",
+      "rows": 6000,
+      "windows": 586,
+      "score_min": 0.0,
+      "score_mean": 188.46156311035156,
+      "score_max": 944.9119873046875,
+      "positive_windows": 236,
+      "positive_window_rate": 0.40273037542662116,
+      "confusion_matrix": {
+        "TP": 209,
+        "FP": 27,
+        "FN": 5,
+        "TN": 345
+      },
+      "metrics": {
+        "precision": 0.885593220338983,
+        "recall": 0.9766355140186916,
+        "f1_score": 0.9288888888888889,
+        "false_positive_rate": 0.07258064516129033
+      },
+      "first_event_start_sec": 190,
+      "detection_delay_sec": -1810,
+      "events": [
+        {
+          "start_window": 19,
+          "end_window": 21,
+          "length_windows": 3,
+          "start_sec": 190,
+          "end_sec": 210
+        },
+        {
+          "start_window": 95,
+          "end_window": 97,
+          "length_windows": 3,
+          "start_sec": 950,
+          "end_sec": 970
+        },
+        {
+          "start_window": 186,
+          "end_window": 394,
+          "length_windows": 209,
+          "start_sec": 1860,
+          "end_sec": 3940
+        },
+        {
+          "start_window": 434,
+          "end_window": 436,
+          "length_windows": 3,
+          "start_sec": 4340,
+          "end_sec": 4360
+        },
+        {
+          "start_window": 523,
+          "end_window": 525,
+          "length_windows": 3,
+          "start_sec": 5230,
+          "end_sec": 5250
+        },
+        {
+          "start_window": 560,
+          "end_window": 564,
+          "length_windows": 5,
+          "start_sec": 5600,
+          "end_sec": 5640
+        }
+      ],
+      "scores_path": "runs\\H030\\scores\\mixed\\telemetry_mixed_normal_stock_activity_infected_by_sample1_normal_clean_1hz_scores.pt"
+    }
+  ]
+}

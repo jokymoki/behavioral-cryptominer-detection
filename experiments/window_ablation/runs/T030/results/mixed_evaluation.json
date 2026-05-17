@@ -1,0 +1,221 @@
+{
+  "horizon": 10,
+  "score_key": "std_score_top5",
+  "threshold": 1.2577353715896606,
+  "window_config": {
+    "T": 30,
+    "H": 10,
+    "stride": 10
+  },
+  "true_infected_interval_sec": {
+    "start": 2000,
+    "end": 4000
+  },
+  "aggregate_metrics": {
+    "mean_precision": 0.9083000407664084,
+    "mean_recall": 0.9950738916256159,
+    "mean_f1_score": 0.9497019944727466,
+    "mean_false_positive_rate": 0.05239569146960506,
+    "mean_detection_delay_sec": -30.0
+  },
+  "files": [
+    {
+      "file": "telemetry_mixed_normal_browser_YTSAGCYTW_infected_by_sample1_normal_clean_1hz.csv",
+      "rows": 6000,
+      "windows": 597,
+      "score_min": 0.0,
+      "score_mean": 254.3006134033203,
+      "score_max": 841.3673095703125,
+      "positive_windows": 223,
+      "positive_window_rate": 0.37353433835845895,
+      "confusion_matrix": {
+        "TP": 202,
+        "FP": 21,
+        "FN": 1,
+        "TN": 373
+      },
+      "metrics": {
+        "precision": 0.905829596412556,
+        "recall": 0.9950738916256158,
+        "f1_score": 0.9483568075117371,
+        "false_positive_rate": 0.0532994923857868
+      },
+      "first_event_start_sec": 1970,
+      "detection_delay_sec": -30,
+      "events": [
+        {
+          "start_window": 197,
+          "end_window": 398,
+          "length_windows": 202,
+          "start_sec": 1970,
+          "end_sec": 3980
+        },
+        {
+          "start_window": 571,
+          "end_window": 573,
+          "length_windows": 3,
+          "start_sec": 5710,
+          "end_sec": 5730
+        }
+      ],
+      "scores_path": "runs\\T030\\scores\\mixed\\telemetry_mixed_normal_browser_YTSAGCYTW_infected_by_sample1_normal_clean_1hz_scores.pt"
+    },
+    {
+      "file": "telemetry_mixed_normal_infected_normal_clean_1hz.csv",
+      "rows": 5752,
+      "windows": 572,
+      "score_min": 0.0,
+      "score_mean": 222.9064178466797,
+      "score_max": 7038.4443359375,
+      "positive_windows": 220,
+      "positive_window_rate": 0.38461538461538464,
+      "confusion_matrix": {
+        "TP": 202,
+        "FP": 18,
+        "FN": 1,
+        "TN": 351
+      },
+      "metrics": {
+        "precision": 0.9181818181818182,
+        "recall": 0.9950738916256158,
+        "f1_score": 0.9550827423167848,
+        "false_positive_rate": 0.04878048780487805
+      },
+      "first_event_start_sec": 1970,
+      "detection_delay_sec": -30,
+      "events": [
+        {
+          "start_window": 197,
+          "end_window": 398,
+          "length_windows": 202,
+          "start_sec": 1970,
+          "end_sec": 3980
+        }
+      ],
+      "scores_path": "runs\\T030\\scores\\mixed\\telemetry_mixed_normal_infected_normal_clean_1hz_scores.pt"
+    },
+    {
+      "file": "telemetry_mixed_normal_infected_sample_tag_monero_normal_clean_1hz.csv",
+      "rows": 6000,
+      "windows": 597,
+      "score_min": 0.0,
+      "score_mean": 258.4707336425781,
+      "score_max": 4249.7470703125,
+      "positive_windows": 223,
+      "positive_window_rate": 0.37353433835845895,
+      "confusion_matrix": {
+        "TP": 202,
+        "FP": 21,
+        "FN": 1,
+        "TN": 373
+      },
+      "metrics": {
+        "precision": 0.905829596412556,
+        "recall": 0.9950738916256158,
+        "f1_score": 0.9483568075117371,
+        "false_positive_rate": 0.0532994923857868
+      },
+      "first_event_start_sec": 1970,
+      "detection_delay_sec": -30,
+      "events": [
+        {
+          "start_window": 197,
+          "end_window": 398,
+          "length_windows": 202,
+          "start_sec": 1970,
+          "end_sec": 3980
+        },
+        {
+          "start_window": 571,
+          "end_window": 573,
+          "length_windows": 3,
+          "start_sec": 5710,
+          "end_sec": 5730
+        }
+      ],
+      "scores_path": "runs\\T030\\scores\\mixed\\telemetry_mixed_normal_infected_sample_tag_monero_normal_clean_1hz_scores.pt"
+    },
+    {
+      "file": "telemetry_mixed_normal_infected_sample_tag_monero_with_browser_act_normal_clean_1hz.csv",
+      "rows": 6000,
+      "windows": 597,
+      "score_min": 0.0,
+      "score_mean": 336.5491027832031,
+      "score_max": 31401.771484375,
+      "positive_windows": 223,
+      "positive_window_rate": 0.37353433835845895,
+      "confusion_matrix": {
+        "TP": 202,
+        "FP": 21,
+        "FN": 1,
+        "TN": 373
+      },
+      "metrics": {
+        "precision": 0.905829596412556,
+        "recall": 0.9950738916256158,
+        "f1_score": 0.9483568075117371,
+        "false_positive_rate": 0.0532994923857868
+      },
+      "first_event_start_sec": 1970,
+      "detection_delay_sec": -30,
+      "events": [
+        {
+          "start_window": 197,
+          "end_window": 398,
+          "length_windows": 202,
+          "start_sec": 1970,
+          "end_sec": 3980
+        },
+        {
+          "start_window": 571,
+          "end_window": 573,
+          "length_windows": 3,
+          "start_sec": 5710,
+          "end_sec": 5730
+        }
+      ],
+      "scores_path": "runs\\T030\\scores\\mixed\\telemetry_mixed_normal_infected_sample_tag_monero_with_browser_act_normal_clean_1hz_scores.pt"
+    },
+    {
+      "file": "telemetry_mixed_normal_stock_activity_infected_by_sample1_normal_clean_1hz.csv",
+      "rows": 6000,
+      "windows": 597,
+      "score_min": 0.0,
+      "score_mean": 187.3373565673828,
+      "score_max": 769.3564453125,
+      "positive_windows": 223,
+      "positive_window_rate": 0.37353433835845895,
+      "confusion_matrix": {
+        "TP": 202,
+        "FP": 21,
+        "FN": 1,
+        "TN": 373
+      },
+      "metrics": {
+        "precision": 0.905829596412556,
+        "recall": 0.9950738916256158,
+        "f1_score": 0.9483568075117371,
+        "false_positive_rate": 0.0532994923857868
+      },
+      "first_event_start_sec": 1970,
+      "detection_delay_sec": -30,
+      "events": [
+        {
+          "start_window": 197,
+          "end_window": 398,
+          "length_windows": 202,
+          "start_sec": 1970,
+          "end_sec": 3980
+        },
+        {
+          "start_window": 571,
+          "end_window": 573,
+          "length_windows": 3,
+          "start_sec": 5710,
+          "end_sec": 5730
+        }
+      ],
+      "scores_path": "runs\\T030\\scores\\mixed\\telemetry_mixed_normal_stock_activity_infected_by_sample1_normal_clean_1hz_scores.pt"
+    }
+  ]
+}

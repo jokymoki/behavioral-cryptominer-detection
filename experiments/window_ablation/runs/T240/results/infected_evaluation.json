@@ -1,0 +1,112 @@
+{
+  "horizon": 10,
+  "score_key": "std_score_top5",
+  "threshold": 1.2983735799789429,
+  "files": [
+    {
+      "file": "telemetry_browser_YTSAGCYTW_infected_by_sample1_clean_1hz.csv",
+      "rows": 5100,
+      "windows": 486,
+      "score_min": 449.2127380371094,
+      "score_mean": 624.1046752929688,
+      "score_max": 671.1966552734375,
+      "positive_windows": 486,
+      "positive_window_rate": 1.0,
+      "first_event_start_sec": 0,
+      "events": [
+        {
+          "start_window": 0,
+          "end_window": 485,
+          "length_windows": 486,
+          "start_sec": 0,
+          "end_sec": 4850
+        }
+      ],
+      "scores_path": "runs\\T240\\scores\\infected\\telemetry_browser_YTSAGCYTW_infected_by_sample1_clean_1hz_scores.pt"
+    },
+    {
+      "file": "telemetry_infected_sample_tag_monero_clean_1hz.csv",
+      "rows": 3462,
+      "windows": 322,
+      "score_min": 409.3263854980469,
+      "score_mean": 637.4039916992188,
+      "score_max": 4018.02685546875,
+      "positive_windows": 322,
+      "positive_window_rate": 1.0,
+      "first_event_start_sec": 0,
+      "events": [
+        {
+          "start_window": 0,
+          "end_window": 321,
+          "length_windows": 322,
+          "start_sec": 0,
+          "end_sec": 3210
+        }
+      ],
+      "scores_path": "runs\\T240\\scores\\infected\\telemetry_infected_sample_tag_monero_clean_1hz_scores.pt"
+    },
+    {
+      "file": "telemetry_infected_sample_tag_monero_with_browser_act_clean_1hz.csv",
+      "rows": 3478,
+      "windows": 323,
+      "score_min": 378.522216796875,
+      "score_mean": 4558.16943359375,
+      "score_max": 1212099.875,
+      "positive_windows": 323,
+      "positive_window_rate": 1.0,
+      "first_event_start_sec": 0,
+      "events": [
+        {
+          "start_window": 0,
+          "end_window": 322,
+          "length_windows": 323,
+          "start_sec": 0,
+          "end_sec": 3220
+        }
+      ],
+      "scores_path": "runs\\T240\\scores\\infected\\telemetry_infected_sample_tag_monero_with_browser_act_clean_1hz_scores.pt"
+    },
+    {
+      "file": "telemetry_second_sample_of_virus_clean_1hz.csv",
+      "rows": 8374,
+      "windows": 813,
+      "score_min": 406.10748291015625,
+      "score_mean": 913.406494140625,
+      "score_max": 14734.265625,
+      "positive_windows": 813,
+      "positive_window_rate": 1.0,
+      "first_event_start_sec": 0,
+      "events": [
+        {
+          "start_window": 0,
+          "end_window": 812,
+          "length_windows": 813,
+          "start_sec": 0,
+          "end_sec": 8120
+        }
+      ],
+      "scores_path": "runs\\T240\\scores\\infected\\telemetry_second_sample_of_virus_clean_1hz_scores.pt"
+    },
+    {
+      "file": "telemetry_stock_activity_infected_by_sample1_clean_1hz.csv",
+      "rows": 11034,
+      "windows": 1079,
+      "score_min": 294.8048400878906,
+      "score_mean": 576.2986450195312,
+      "score_max": 678.1104125976562,
+      "positive_windows": 1079,
+      "positive_window_rate": 1.0,
+      "first_event_start_sec": 0,
+      "events": [
+        {
+          "start_window": 0,
+          "end_window": 1078,
+          "length_windows": 1079,
+          "start_sec": 0,
+          "end_sec": 10780
+        }
+      ],
+      "scores_path": "runs\\T240\\scores\\infected\\telemetry_stock_activity_infected_by_sample1_clean_1hz_scores.pt"
+    }
+  ]
+}

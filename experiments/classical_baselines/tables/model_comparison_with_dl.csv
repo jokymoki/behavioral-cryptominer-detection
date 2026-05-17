@@ -1,0 +1,4 @@
+model,T,infected_positive_rate,mixed_precision,mixed_recall,mixed_f1,mixed_FPR,mixed_detection_delay_sec
+tcn_forecaster_dl,30,1.0,0.9078859681599407,0.9901477832512315,0.9472272093671592,0.05239569146960506,-30.0
+isolation_forest,30,0.398515812005243,1.0,0.3306930693069307,0.42820801589557755,0.0,204.0
+one_class_svm,30,1.0,1.0,1.0,1.0,0.0,-20.0
