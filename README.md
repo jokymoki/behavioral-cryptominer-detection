@@ -106,3 +106,9 @@ The final coursework source is available in `coursework_final.tex`.
 - scikit-learn
 - Matplotlib
 - LaTeX
+
+## License
+
+Code in this repository is released under the MIT License. See `LICENSE` for details.
+
+Telemetry datasets, trained checkpoints, generated experiment artifacts, and the coursework report are provided for educational and research purposes only, unless stated otherwise.
