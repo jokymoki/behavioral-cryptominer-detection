@@ -346,6 +346,17 @@ The anomaly threshold is selected as the 99th percentile of the validation norma
 \section{Experiments}
 \label{sec:experiments}
 
+\subsection{Code Availability}
+
+The source code, training scripts, telemetry collection pipeline, 
+and evaluation framework developed for this research project are publicly available at:
+
+\url{https://github.com/jokymoki/behavioral-cryptominer-detection}
+
+The repository contains data preprocessing scripts, telemetry collection modules,
+model training procedures, and evaluation utilities required to reproduce
+the conducted experiments.
+
 \subsection{Experimental setup}
 
 The full training pipeline performs column checks, window construction, TCN training, validation scoring, mixed-file construction, infected and mixed scoring, and report artifact generation. The evaluation-only pipeline regenerates scores, metrics, tables, and plots from an existing trained model. The final model checkpoint used in the report has validation loss 0.4265 and was trained on normal workload windows only.
@@ -605,6 +616,17 @@ Infected data collection was limited by open repository of malwarebazaar.com.
 \subsection{Future Work}
 
 As a future upgrade for these project can be done several things. Getting access to commercial repositories of viruses and using them  for training and evaluation of the model. Getting access to professional testing machines which are able to provide true telemetry of GPU and collecting new infected data with broader scenarios of use, to cover more ways of user activity. Making desktop app which is going to use that model to provide notifications about possible cryptominer threat on the PC of user. Covering more OS's.
+
+\subsection{Code Availability}
+
+The source code, training scripts, telemetry collection pipeline, 
+and evaluation framework developed for this research project are publicly available at:
+
+\url{https://github.com/jokymoki/behavioral-cryptominer-detection}
+
+The repository contains data preprocessing scripts, telemetry collection modules,
+model training procedures, and evaluation utilities required to reproduce
+the conducted experiments.
 
 \section{Conclusion}
 \label{sec:conclusion}
