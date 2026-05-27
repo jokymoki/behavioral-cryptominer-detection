@@ -1,10 +1,14 @@
 import pandas as pd
 from pathlib import Path
+import sys
 
 
 BASE_DIR = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(BASE_DIR))
+
+from project_config import get_feature_columns
+
 CLEAN_DIR = BASE_DIR / "clean_data" / "normal"
-TIME_COL = "ts"
 
 
 def main():
@@ -14,7 +18,7 @@ def main():
         return
 
     ref = pd.read_csv(files[0], nrows=1)
-    ref_cols = [c for c in ref.columns if c != TIME_COL]
+    ref_cols = get_feature_columns(ref.columns)
 
     print("Reference file:", files[0].name)
     print("Num feature cols (D):", len(ref_cols))
@@ -23,7 +27,7 @@ def main():
     ok = True
     for f in files[1:]:
         df = pd.read_csv(f, nrows=1)
-        cols = [c for c in df.columns if c != TIME_COL]
+        cols = get_feature_columns(df.columns)
 
         if cols != ref_cols:
             ok = False

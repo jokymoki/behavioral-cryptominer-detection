@@ -27,6 +27,7 @@ from project_config import (
     TIME_COL,
     TRUE_INFECTED_END_SEC,
     TRUE_INFECTED_START_SEC,
+    get_feature_columns,
 )
 from model_scripts.score_mixed_dataset import TCNForecaster, compute_basic_scores, mean_topk
 from data_scripts.step3_make_windows import make_windows
@@ -59,7 +60,7 @@ DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 def reference_columns() -> list[str]:
     files = sorted(CLEAN_NORMAL_DIR.glob("*.csv"))
     df = pd.read_csv(files[0], nrows=1)
-    return [c for c in df.columns if c != TIME_COL]
+    return get_feature_columns(df.columns)
 
 
 def take_rows_with_wrap(df: pd.DataFrame, start: int, count: int) -> pd.DataFrame:
@@ -297,7 +298,7 @@ def main() -> None:
 
         for model_name in ["isolation_forest", "one_class_svm"]:
             score, pred = score_classical(path, cols, model_name)
-            labels = true_labels(len(pred), T)
+            labels = true_labels(len(pred), T + H)
             m = metrics(pred, labels)
             rows.append({"scenario": path.name, "alpha": alpha, "model": model_name, **m})
 

@@ -22,6 +22,7 @@ PROJECT_DIR = EXP_DIR.parents[1]
 sys.path.insert(0, str(PROJECT_DIR))
 
 from project_config import (
+    H,
     MIN_CONSECUTIVE_WINDOWS,
     NORMAL_HOLDOUT_FILES,
     S,
@@ -29,6 +30,7 @@ from project_config import (
     TIME_COL,
     TRUE_INFECTED_END_SEC,
     TRUE_INFECTED_START_SEC,
+    get_feature_columns,
 )
 
 
@@ -50,7 +52,7 @@ def load_reference_columns() -> list[str]:
     if not files:
         raise FileNotFoundError(f"No normal CSV files in {CLEAN_NORMAL_DIR}")
     df = pd.read_csv(files[0], nrows=1)
-    return [c for c in df.columns if c != TIME_COL]
+    return get_feature_columns(df.columns)
 
 
 def load_feature_frame(path: Path, reference_cols: list[str]) -> pd.DataFrame:
@@ -58,7 +60,7 @@ def load_feature_frame(path: Path, reference_cols: list[str]) -> pd.DataFrame:
     if TIME_COL not in df.columns:
         raise ValueError(f"{path.name}: missing {TIME_COL}")
 
-    current_cols = [c for c in df.columns if c != TIME_COL]
+    current_cols = get_feature_columns(df.columns)
     if current_cols != reference_cols:
         missing = sorted(set(reference_cols) - set(current_cols))
         extra = sorted(set(current_cols) - set(reference_cols))
@@ -179,7 +181,7 @@ def true_labels_for_mixed(num_windows: int) -> np.ndarray:
     labels = np.zeros(num_windows, dtype=bool)
     for i in range(num_windows):
         window_start = i * S
-        window_end = window_start + T
+        window_end = window_start + T + H
         labels[i] = (
             window_start < TRUE_INFECTED_END_SEC
             and window_end > TRUE_INFECTED_START_SEC

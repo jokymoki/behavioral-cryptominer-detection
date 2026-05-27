@@ -33,7 +33,8 @@ def load_npz(path):
     Y_val = data["Y_val"]
     mu = data["mu"]
     sigma = data["sigma"]
-    return X_train, Y_train, X_val, Y_val, mu, sigma
+    feature_columns = data["feature_columns"].astype(str).tolist()
+    return X_train, Y_train, X_val, Y_val, mu, sigma, feature_columns
 
 class WindowDataset(Dataset):
     def __init__(self, X, Y):
@@ -117,7 +118,7 @@ def compute_basic_scores(pred, target):
     return feature_mse, global_mse, vector_l2
 
 def main():
-    X_train, Y_train, X_val, Y_val, mu, sigma = load_npz(NPZ_PATH)
+    X_train, Y_train, X_val, Y_val, mu, sigma, feature_columns = load_npz(NPZ_PATH)
 
     val_ds = WindowDataset(X_val, Y_val)
     val_loader = DataLoader(
@@ -221,6 +222,7 @@ def main():
             "feature_err_mean": feature_err_mean,
             "feature_err_std": feature_err_std_used,
             "feature_err_std_raw": feature_err_std,
+            "feature_columns": feature_columns,
         },
         SCORES_OUT_PATH
     )

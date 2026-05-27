@@ -4,6 +4,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent
 
 TIME_COL = "ts"
+EXCLUDED_FEATURE_PREFIXES = ("gpu_",)
 
 # Main model configuration selected after ablation experiments.
 T = 30
@@ -22,3 +23,11 @@ SCORE_KEY = "std_score_top5"
 NORMAL_HOLDOUT_FILES = [
     "telemetry_Spotify_clean_1hz.csv",
 ]
+
+
+def get_feature_columns(columns):
+    return [
+        col for col in columns
+        if col != TIME_COL
+        and not any(col.startswith(prefix) for prefix in EXCLUDED_FEATURE_PREFIXES)
+    ]

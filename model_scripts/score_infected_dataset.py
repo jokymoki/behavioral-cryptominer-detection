@@ -11,7 +11,7 @@ sys.path.insert(0, str(PROJECT_ROOT))
 
 from model_scripts.score_windows import TCNForecaster, compute_basic_scores
 from data_scripts.step3_make_windows import make_windows
-from project_config import DATASET_PATH, H, MIN_CONSECUTIVE_WINDOWS, S, SCORE_KEY, T, TIME_COL
+from project_config import DATASET_PATH, H, MIN_CONSECUTIVE_WINDOWS, S, SCORE_KEY, T, TIME_COL, get_feature_columns
 
 
 BASE_DIR = PROJECT_ROOT
@@ -38,7 +38,7 @@ def load_reference_columns() -> list[str]:
         raise FileNotFoundError(f"No normal cleaned files in {CLEAN_NORMAL_DIR}")
 
     ref = pd.read_csv(normal_files[0], nrows=1)
-    return [c for c in ref.columns if c != TIME_COL]
+    return get_feature_columns(ref.columns)
 
 
 def load_feature_frame(csv_path: Path, reference_cols: list[str]) -> tuple[pd.Series, np.ndarray]:
@@ -46,7 +46,7 @@ def load_feature_frame(csv_path: Path, reference_cols: list[str]) -> tuple[pd.Se
     if TIME_COL not in df.columns:
         raise ValueError(f"{csv_path.name}: missing required column {TIME_COL}")
 
-    current_cols = [c for c in df.columns if c != TIME_COL]
+    current_cols = get_feature_columns(df.columns)
     missing = sorted(set(reference_cols) - set(current_cols))
     extra = sorted(set(current_cols) - set(reference_cols))
     if missing or extra:

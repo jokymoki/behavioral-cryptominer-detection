@@ -4,9 +4,9 @@
     "stride": 10
   },
   "normal_dataset": {
-    "total_windows": 3329,
-    "train_windows": 2663,
-    "val_windows": 666,
+    "total_windows": 2956,
+    "train_windows": 2364,
+    "val_windows": 592,
     "files": [
       {
         "file": "telemetry_gaming_1_clean_1hz.csv",
@@ -29,11 +29,6 @@
         "windows": 359
       },
       {
-        "file": "telemetry_Spotify_clean_1hz.csv",
-        "rows": 3752,
-        "windows": 373
-      },
-      {
         "file": "telemetry_Twitch_clean_1hz.csv",
         "rows": 7466,
         "windows": 744
@@ -47,10 +42,10 @@
   },
   "models": {
     "isolation_forest": {
-      "threshold": 0.019784413724652037,
+      "threshold": -0.008198586284750137,
       "infected": {
         "model": "isolation_forest",
-        "threshold": 0.019784413724652037,
+        "threshold": -0.008198586284750137,
         "window_config": {
           "T": 30,
           "stride": 10
@@ -58,96 +53,82 @@
         "files": [
           {
             "windows": 508,
-            "score_min": -0.01734802028223076,
-            "score_mean": 0.02288308503304747,
-            "score_max": 0.06904423747284483,
-            "positive_windows": 288,
-            "positive_window_rate": 0.5669291338582677,
-            "first_event_start_sec": 460,
+            "score_min": -0.020185962853538075,
+            "score_mean": 0.018735472168008836,
+            "score_max": 0.07583959082034664,
+            "positive_windows": 484,
+            "positive_window_rate": 0.952755905511811,
+            "first_event_start_sec": 0,
             "events": [
               {
-                "start_window": 46,
-                "end_window": 49,
-                "length_windows": 4,
-                "start_sec": 460,
-                "end_sec": 490
+                "start_window": 0,
+                "end_window": 9,
+                "length_windows": 10,
+                "start_sec": 0,
+                "end_sec": 90
               },
               {
-                "start_window": 168,
-                "end_window": 251,
-                "length_windows": 84,
-                "start_sec": 1680,
-                "end_sec": 2510
+                "start_window": 16,
+                "end_window": 21,
+                "length_windows": 6,
+                "start_sec": 160,
+                "end_sec": 210
               },
               {
-                "start_window": 253,
-                "end_window": 264,
+                "start_window": 24,
+                "end_window": 35,
                 "length_windows": 12,
-                "start_sec": 2530,
-                "end_sec": 2640
+                "start_sec": 240,
+                "end_sec": 350
               },
               {
-                "start_window": 266,
-                "end_window": 274,
-                "length_windows": 9,
-                "start_sec": 2660,
-                "end_sec": 2740
-              },
-              {
-                "start_window": 289,
-                "end_window": 344,
-                "length_windows": 56,
-                "start_sec": 2890,
-                "end_sec": 3440
-              },
-              {
-                "start_window": 363,
-                "end_window": 367,
-                "length_windows": 5,
-                "start_sec": 3630,
-                "end_sec": 3670
-              },
-              {
-                "start_window": 379,
-                "end_window": 383,
-                "length_windows": 5,
-                "start_sec": 3790,
-                "end_sec": 3830
-              },
-              {
-                "start_window": 392,
-                "end_window": 447,
-                "length_windows": 56,
-                "start_sec": 3920,
-                "end_sec": 4470
-              },
-              {
-                "start_window": 449,
-                "end_window": 452,
+                "start_window": 37,
+                "end_window": 40,
                 "length_windows": 4,
-                "start_sec": 4490,
-                "end_sec": 4520
+                "start_sec": 370,
+                "end_sec": 400
               },
               {
-                "start_window": 457,
-                "end_window": 467,
-                "length_windows": 11,
-                "start_sec": 4570,
-                "end_sec": 4670
+                "start_window": 45,
+                "end_window": 136,
+                "length_windows": 92,
+                "start_sec": 450,
+                "end_sec": 1360
               },
               {
-                "start_window": 473,
+                "start_window": 138,
+                "end_window": 154,
+                "length_windows": 17,
+                "start_sec": 1380,
+                "end_sec": 1540
+              },
+              {
+                "start_window": 159,
+                "end_window": 165,
+                "length_windows": 7,
+                "start_sec": 1590,
+                "end_sec": 1650
+              },
+              {
+                "start_window": 167,
+                "end_window": 278,
+                "length_windows": 112,
+                "start_sec": 1670,
+                "end_sec": 2780
+              },
+              {
+                "start_window": 280,
                 "end_window": 483,
-                "length_windows": 11,
-                "start_sec": 4730,
+                "length_windows": 204,
+                "start_sec": 2800,
                 "end_sec": 4830
               },
               {
-                "start_window": 493,
-                "end_window": 495,
-                "length_windows": 3,
-                "start_sec": 4930,
-                "end_sec": 4950
+                "start_window": 491,
+                "end_window": 506,
+                "length_windows": 16,
+                "start_sec": 4910,
+                "end_sec": 5060
               }
             ],
             "file": "telemetry_browser_YTSAGCYTW_infected_by_sample1_clean_1hz.csv",
@@ -155,82 +136,75 @@
           },
           {
             "windows": 344,
-            "score_min": -0.04275175434543099,
-            "score_mean": 0.031448857291786994,
-            "score_max": 0.09966440096190399,
-            "positive_windows": 218,
-            "positive_window_rate": 0.6337209302325582,
+            "score_min": -0.06554686494368933,
+            "score_mean": 0.02418360020235223,
+            "score_max": 0.1014906678631925,
+            "positive_windows": 264,
+            "positive_window_rate": 0.7674418604651163,
             "first_event_start_sec": 0,
             "events": [
               {
                 "start_window": 0,
-                "end_window": 17,
-                "length_windows": 18,
-                "start_sec": 0,
-                "end_sec": 170
-              },
-              {
-                "start_window": 19,
-                "end_window": 33,
-                "length_windows": 15,
-                "start_sec": 190,
-                "end_sec": 330
-              },
-              {
-                "start_window": 35,
                 "end_window": 43,
-                "length_windows": 9,
-                "start_sec": 350,
+                "length_windows": 44,
+                "start_sec": 0,
                 "end_sec": 430
               },
               {
-                "start_window": 56,
-                "end_window": 59,
+                "start_window": 45,
+                "end_window": 49,
+                "length_windows": 5,
+                "start_sec": 450,
+                "end_sec": 490
+              },
+              {
+                "start_window": 55,
+                "end_window": 60,
+                "length_windows": 6,
+                "start_sec": 550,
+                "end_sec": 600
+              },
+              {
+                "start_window": 81,
+                "end_window": 89,
+                "length_windows": 9,
+                "start_sec": 810,
+                "end_sec": 890
+              },
+              {
+                "start_window": 92,
+                "end_window": 95,
                 "length_windows": 4,
-                "start_sec": 560,
-                "end_sec": 590
+                "start_sec": 920,
+                "end_sec": 950
               },
               {
-                "start_window": 74,
-                "end_window": 76,
-                "length_windows": 3,
-                "start_sec": 740,
-                "end_sec": 760
+                "start_window": 97,
+                "end_window": 172,
+                "length_windows": 76,
+                "start_sec": 970,
+                "end_sec": 1720
               },
               {
-                "start_window": 83,
-                "end_window": 87,
+                "start_window": 181,
+                "end_window": 185,
                 "length_windows": 5,
-                "start_sec": 830,
-                "end_sec": 870
-              },
-              {
-                "start_window": 98,
-                "end_window": 102,
-                "length_windows": 5,
-                "start_sec": 980,
-                "end_sec": 1020
-              },
-              {
-                "start_window": 104,
-                "end_window": 153,
-                "length_windows": 50,
-                "start_sec": 1040,
-                "end_sec": 1530
-              },
-              {
-                "start_window": 161,
-                "end_window": 170,
-                "length_windows": 10,
-                "start_sec": 1610,
-                "end_sec": 1700
+                "start_sec": 1810,
+                "end_sec": 1850
               },
               {
                 "start_window": 187,
-                "end_window": 273,
-                "length_windows": 87,
+                "end_window": 278,
+                "length_windows": 92,
                 "start_sec": 1870,
-                "end_sec": 2730
+                "end_sec": 2780
+              },
+              {
+                "start_window": 306,
+                "end_window": 309,
+                "length_windows": 4,
+                "start_sec": 3060,
+                "end_sec": 3090
               }
             ],
             "file": "telemetry_infected_sample_tag_monero_clean_1hz.csv",
@@ -238,110 +212,117 @@
           },
           {
             "windows": 345,
-            "score_min": -0.015361204415597074,
-            "score_mean": 0.03275860494450806,
-            "score_max": 0.09027103697243632,
-            "positive_windows": 226,
-            "positive_window_rate": 0.6550724637681159,
+            "score_min": -0.0313817062876382,
+            "score_mean": 0.026817194155487493,
+            "score_max": 0.09632738963640641,
+            "positive_windows": 296,
+            "positive_window_rate": 0.8579710144927536,
             "first_event_start_sec": 0,
             "events": [
               {
                 "start_window": 0,
-                "end_window": 88,
-                "length_windows": 89,
+                "end_window": 96,
+                "length_windows": 97,
                 "start_sec": 0,
-                "end_sec": 880
+                "end_sec": 960
               },
               {
-                "start_window": 90,
-                "end_window": 93,
-                "length_windows": 4,
-                "start_sec": 900,
-                "end_sec": 930
+                "start_window": 105,
+                "end_window": 112,
+                "length_windows": 8,
+                "start_sec": 1050,
+                "end_sec": 1120
               },
               {
-                "start_window": 99,
-                "end_window": 101,
-                "length_windows": 3,
-                "start_sec": 990,
-                "end_sec": 1010
-              },
-              {
-                "start_window": 117,
+                "start_window": 116,
                 "end_window": 119,
-                "length_windows": 3,
-                "start_sec": 1170,
+                "length_windows": 4,
+                "start_sec": 1160,
                 "end_sec": 1190
               },
               {
-                "start_window": 127,
-                "end_window": 130,
-                "length_windows": 4,
-                "start_sec": 1270,
-                "end_sec": 1300
+                "start_window": 124,
+                "end_window": 131,
+                "length_windows": 8,
+                "start_sec": 1240,
+                "end_sec": 1310
               },
               {
                 "start_window": 136,
-                "end_window": 138,
-                "length_windows": 3,
+                "end_window": 141,
+                "length_windows": 6,
                 "start_sec": 1360,
-                "end_sec": 1380
+                "end_sec": 1410
               },
               {
-                "start_window": 148,
-                "end_window": 150,
-                "length_windows": 3,
-                "start_sec": 1480,
-                "end_sec": 1500
+                "start_window": 147,
+                "end_window": 151,
+                "length_windows": 5,
+                "start_sec": 1470,
+                "end_sec": 1510
               },
               {
-                "start_window": 162,
-                "end_window": 164,
-                "length_windows": 3,
-                "start_sec": 1620,
-                "end_sec": 1640
+                "start_window": 154,
+                "end_window": 165,
+                "length_windows": 12,
+                "start_sec": 1540,
+                "end_sec": 1650
               },
               {
-                "start_window": 192,
-                "end_window": 194,
-                "length_windows": 3,
-                "start_sec": 1920,
-                "end_sec": 1940
+                "start_window": 171,
+                "end_window": 175,
+                "length_windows": 5,
+                "start_sec": 1710,
+                "end_sec": 1750
               },
               {
-                "start_window": 203,
-                "end_window": 205,
-                "length_windows": 3,
-                "start_sec": 2030,
-                "end_sec": 2050
+                "start_window": 177,
+                "end_window": 181,
+                "length_windows": 5,
+                "start_sec": 1770,
+                "end_sec": 1810
+              },
+              {
+                "start_window": 189,
+                "end_window": 207,
+                "length_windows": 19,
+                "start_sec": 1890,
+                "end_sec": 2070
+              },
+              {
+                "start_window": 210,
+                "end_window": 213,
+                "length_windows": 4,
+                "start_sec": 2100,
+                "end_sec": 2130
+              },
+              {
+                "start_window": 216,
+                "end_window": 226,
+                "length_windows": 11,
+                "start_sec": 2160,
+                "end_sec": 2260
+              },
+              {
+                "start_window": 232,
+                "end_window": 236,
+                "length_windows": 5,
+                "start_sec": 2320,
+                "end_sec": 2360
               },
               {
                 "start_window": 245,
-                "end_window": 247,
-                "length_windows": 3,
+                "end_window": 248,
+                "length_windows": 4,
                 "start_sec": 2450,
-                "end_sec": 2470
+                "end_sec": 2480
               },
               {
                 "start_window": 250,
-                "end_window": 322,
-                "length_windows": 73,
+                "end_window": 344,
+                "length_windows": 95,
                 "start_sec": 2500,
-                "end_sec": 3220
-              },
-              {
-                "start_window": 324,
-                "end_window": 328,
-                "length_windows": 5,
-                "start_sec": 3240,
-                "end_sec": 3280
-              },
-              {
-                "start_window": 333,
-                "end_window": 340,
-                "length_windows": 8,
-                "start_sec": 3330,
-                "end_sec": 3400
+                "end_sec": 3440
               }
             ],
             "file": "telemetry_infected_sample_tag_monero_with_browser_act_clean_1hz.csv",
@@ -349,47 +330,33 @@
           },
           {
             "windows": 835,
-            "score_min": -0.07569607974297732,
-            "score_mean": -0.013032695645586219,
-            "score_max": 0.13593096623038636,
-            "positive_windows": 112,
-            "positive_window_rate": 0.1341317365269461,
+            "score_min": -0.06235227668737803,
+            "score_mean": -0.011253716872126543,
+            "score_max": 0.15781338067450656,
+            "positive_windows": 220,
+            "positive_window_rate": 0.2634730538922156,
             "first_event_start_sec": 0,
             "events": [
               {
                 "start_window": 0,
-                "end_window": 4,
-                "length_windows": 5,
+                "end_window": 5,
+                "length_windows": 6,
                 "start_sec": 0,
-                "end_sec": 40
+                "end_sec": 50
               },
               {
-                "start_window": 23,
-                "end_window": 25,
-                "length_windows": 3,
-                "start_sec": 230,
-                "end_sec": 250
-              },
-              {
-                "start_window": 63,
-                "end_window": 65,
-                "length_windows": 3,
-                "start_sec": 630,
-                "end_sec": 650
-              },
-              {
-                "start_window": 100,
-                "end_window": 102,
-                "length_windows": 3,
-                "start_sec": 1000,
-                "end_sec": 1020
-              },
-              {
-                "start_window": 230,
+                "start_window": 228,
                 "end_window": 248,
-                "length_windows": 19,
-                "start_sec": 2300,
+                "length_windows": 21,
+                "start_sec": 2280,
                 "end_sec": 2480
+              },
+              {
+                "start_window": 302,
+                "end_window": 305,
+                "length_windows": 4,
+                "start_sec": 3020,
+                "end_sec": 3050
               },
               {
                 "start_window": 317,
@@ -400,73 +367,73 @@
               },
               {
                 "start_window": 338,
-                "end_window": 345,
-                "length_windows": 8,
+                "end_window": 346,
+                "length_windows": 9,
                 "start_sec": 3380,
-                "end_sec": 3450
+                "end_sec": 3460
               },
               {
                 "start_window": 352,
-                "end_window": 361,
-                "length_windows": 10,
+                "end_window": 370,
+                "length_windows": 19,
                 "start_sec": 3520,
-                "end_sec": 3610
-              },
-              {
-                "start_window": 364,
-                "end_window": 366,
-                "length_windows": 3,
-                "start_sec": 3640,
-                "end_sec": 3660
+                "end_sec": 3700
               },
               {
                 "start_window": 372,
-                "end_window": 374,
-                "length_windows": 3,
+                "end_window": 376,
+                "length_windows": 5,
                 "start_sec": 3720,
-                "end_sec": 3740
+                "end_sec": 3760
+              },
+              {
+                "start_window": 388,
+                "end_window": 391,
+                "length_windows": 4,
+                "start_sec": 3880,
+                "end_sec": 3910
               },
               {
                 "start_window": 393,
-                "end_window": 397,
-                "length_windows": 5,
+                "end_window": 398,
+                "length_windows": 6,
                 "start_sec": 3930,
-                "end_sec": 3970
+                "end_sec": 3980
               },
               {
-                "start_window": 401,
-                "end_window": 425,
-                "length_windows": 25,
-                "start_sec": 4010,
-                "end_sec": 4250
-              },
-              {
-                "start_window": 456,
-                "end_window": 458,
-                "length_windows": 3,
-                "start_sec": 4560,
-                "end_sec": 4580
+                "start_window": 400,
+                "end_window": 428,
+                "length_windows": 29,
+                "start_sec": 4000,
+                "end_sec": 4280
               },
               {
                 "start_window": 562,
-                "end_window": 564,
-                "length_windows": 3,
+                "end_window": 565,
+                "length_windows": 4,
                 "start_sec": 5620,
-                "end_sec": 5640
+                "end_sec": 5650
               },
               {
-                "start_window": 664,
-                "end_window": 666,
-                "length_windows": 3,
-                "start_sec": 6640,
-                "end_sec": 6660
+                "start_window": 574,
+                "end_window": 577,
+                "length_windows": 4,
+                "start_sec": 5740,
+                "end_sec": 5770
               },
               {
-                "start_window": 690,
-                "end_window": 692,
-                "length_windows": 3,
-                "start_sec": 6900,
-                "end_sec": 6920
+                "start_window": 688,
+                "end_window": 693,
+                "length_windows": 6,
+                "start_sec": 6880,
+                "end_sec": 6930
+              },
+              {
+                "start_window": 776,
+                "end_window": 779,
+                "length_windows": 4,
+                "start_sec": 7760,
+                "end_sec": 7790
               }
             ],
             "file": "telemetry_second_sample_of_virus_clean_1hz.csv",
@@ -474,18 +441,18 @@
           },
           {
             "windows": 1101,
-            "score_min": -0.08439009101402134,
-            "score_mean": -0.03244648115187632,
-            "score_max": 0.05886488299760362,
-            "positive_windows": 3,
-            "positive_window_rate": 0.0027247956403269754,
-            "first_event_start_sec": 620,
+            "score_min": -0.08080885161657603,
+            "score_mean": -0.04882128809280328,
+            "score_max": 0.03828631975204122,
+            "positive_windows": 13,
+            "positive_window_rate": 0.011807447774750226,
+            "first_event_start_sec": 610,
             "events": [
               {
-                "start_window": 62,
+                "start_window": 61,
                 "end_window": 64,
-                "length_windows": 3,
-                "start_sec": 620,
+                "length_windows": 4,
+                "start_sec": 610,
                 "end_sec": 640
               }
             ],
@@ -494,12 +461,12 @@
           }
         ],
         "aggregate": {
-          "mean_positive_rate": 0.398515812005243
+          "mean_positive_rate": 0.5706898564273294
         }
       },
       "mixed": {
         "model": "isolation_forest",
-        "threshold": 0.019784413724652037,
+        "threshold": -0.008198586284750137,
         "window_config": {
           "T": 30,
           "stride": 10
@@ -509,178 +476,206 @@
           "end": 4000
         },
         "aggregate_metrics": {
-          "mean_precision": 1.0,
-          "mean_recall": 0.3306930693069307,
-          "mean_f1_score": 0.42820801589557755,
-          "mean_false_positive_rate": 0.0,
-          "mean_detection_delay_sec": 204.0
+          "mean_precision": 0.5777870678799472,
+          "mean_recall": 0.5536945812807882,
+          "mean_f1_score": 0.5468209641138259,
+          "mean_false_positive_rate": 0.1205952788231269,
+          "mean_detection_delay_sec": -580.0
         },
         "files": [
           {
             "windows": 598,
-            "score_min": -0.1439654584105674,
-            "score_mean": -0.06414428077756042,
-            "score_max": 0.05730216659708143,
-            "positive_windows": 43,
-            "positive_window_rate": 0.07190635451505016,
-            "first_event_start_sec": 2460,
+            "score_min": -0.12728290349554117,
+            "score_mean": -0.04970160136765709,
+            "score_max": 0.06627554254385826,
+            "positive_windows": 231,
+            "positive_window_rate": 0.3862876254180602,
+            "first_event_start_sec": 1420,
             "events": [
               {
-                "start_window": 246,
-                "end_window": 249,
-                "length_windows": 4,
-                "start_sec": 2460,
-                "end_sec": 2490
+                "start_window": 142,
+                "end_window": 188,
+                "length_windows": 47,
+                "start_sec": 1420,
+                "end_sec": 1880
               },
               {
-                "start_window": 368,
+                "start_window": 198,
+                "end_window": 209,
+                "length_windows": 12,
+                "start_sec": 1980,
+                "end_sec": 2090
+              },
+              {
+                "start_window": 216,
+                "end_window": 221,
+                "length_windows": 6,
+                "start_sec": 2160,
+                "end_sec": 2210
+              },
+              {
+                "start_window": 224,
+                "end_window": 235,
+                "length_windows": 12,
+                "start_sec": 2240,
+                "end_sec": 2350
+              },
+              {
+                "start_window": 237,
+                "end_window": 240,
+                "length_windows": 4,
+                "start_sec": 2370,
+                "end_sec": 2400
+              },
+              {
+                "start_window": 245,
+                "end_window": 336,
+                "length_windows": 92,
+                "start_sec": 2450,
+                "end_sec": 3360
+              },
+              {
+                "start_window": 338,
+                "end_window": 354,
+                "length_windows": 17,
+                "start_sec": 3380,
+                "end_sec": 3540
+              },
+              {
+                "start_window": 359,
+                "end_window": 365,
+                "length_windows": 7,
+                "start_sec": 3590,
+                "end_sec": 3650
+              },
+              {
+                "start_window": 367,
                 "end_window": 399,
-                "length_windows": 32,
-                "start_sec": 3680,
+                "length_windows": 33,
+                "start_sec": 3670,
                 "end_sec": 3990
               }
             ],
             "file": "telemetry_mixed_normal_browser_YTSAGCYTW_infected_by_sample1_normal_clean_1hz.csv",
             "rows": 6000,
             "confusion_matrix": {
-              "TP": 43,
-              "FP": 0,
-              "FN": 159,
-              "TN": 396
+              "TP": 184,
+              "FP": 47,
+              "FN": 19,
+              "TN": 348
             },
             "metrics": {
-              "precision": 1.0,
-              "recall": 0.21287128712871287,
-              "f1_score": 0.3510204081632653,
-              "false_positive_rate": 0.0
+              "precision": 0.7965367965367965,
+              "recall": 0.9064039408866995,
+              "f1_score": 0.8479262672811061,
+              "false_positive_rate": 0.1189873417721519
             },
-            "detection_delay_sec": 460
+            "detection_delay_sec": -580
           },
           {
             "windows": 573,
-            "score_min": -0.1439654584105674,
-            "score_mean": -0.07896231528748508,
-            "score_max": 0.11746486679435408,
-            "positive_windows": 17,
-            "positive_window_rate": 0.029668411867364748,
-            "first_event_start_sec": 1980,
+            "score_min": -0.12728290349554117,
+            "score_mean": -0.06188801167760563,
+            "score_max": 0.1304341212425012,
+            "positive_windows": 72,
+            "positive_window_rate": 0.1256544502617801,
+            "first_event_start_sec": 1420,
             "events": [
               {
+                "start_window": 142,
+                "end_window": 188,
+                "length_windows": 47,
+                "start_sec": 1420,
+                "end_sec": 1880
+              },
+              {
                 "start_window": 198,
-                "end_window": 204,
-                "length_windows": 7,
+                "end_window": 205,
+                "length_windows": 8,
                 "start_sec": 1980,
-                "end_sec": 2040
-              },
-              {
-                "start_window": 223,
-                "end_window": 225,
-                "length_windows": 3,
-                "start_sec": 2230,
-                "end_sec": 2250
-              },
-              {
-                "start_window": 263,
-                "end_window": 265,
-                "length_windows": 3,
-                "start_sec": 2630,
-                "end_sec": 2650
-              },
-              {
-                "start_window": 300,
-                "end_window": 302,
-                "length_windows": 3,
-                "start_sec": 3000,
-                "end_sec": 3020
+                "end_sec": 2050
               }
             ],
             "file": "telemetry_mixed_normal_infected_normal_clean_1hz.csv",
             "rows": 5752,
             "confusion_matrix": {
-              "TP": 17,
-              "FP": 0,
-              "FN": 185,
-              "TN": 371
+              "TP": 25,
+              "FP": 47,
+              "FN": 178,
+              "TN": 323
             },
             "metrics": {
-              "precision": 1.0,
-              "recall": 0.08415841584158416,
-              "f1_score": 0.1552511415525114,
-              "false_positive_rate": 0.0
+              "precision": 0.3472222222222222,
+              "recall": 0.12315270935960591,
+              "f1_score": 0.18181818181818182,
+              "false_positive_rate": 0.12702702702702703
             },
-            "detection_delay_sec": -20
+            "detection_delay_sec": -580
           },
           {
             "windows": 598,
-            "score_min": -0.1439654584105674,
-            "score_mean": -0.054841694027662535,
-            "score_max": 0.09966440096190399,
-            "positive_windows": 140,
-            "positive_window_rate": 0.23411371237458195,
-            "first_event_start_sec": 1980,
+            "score_min": -0.12728290349554117,
+            "score_mean": -0.04379042656561674,
+            "score_max": 0.1014906678631925,
+            "positive_windows": 221,
+            "positive_window_rate": 0.3695652173913043,
+            "first_event_start_sec": 1420,
             "events": [
               {
+                "start_window": 142,
+                "end_window": 188,
+                "length_windows": 47,
+                "start_sec": 1420,
+                "end_sec": 1880
+              },
+              {
                 "start_window": 198,
-                "end_window": 217,
-                "length_windows": 20,
-                "start_sec": 1980,
-                "end_sec": 2170
-              },
-              {
-                "start_window": 219,
-                "end_window": 233,
-                "length_windows": 15,
-                "start_sec": 2190,
-                "end_sec": 2330
-              },
-              {
-                "start_window": 235,
                 "end_window": 243,
-                "length_windows": 9,
-                "start_sec": 2350,
+                "length_windows": 46,
+                "start_sec": 1980,
                 "end_sec": 2430
               },
               {
-                "start_window": 256,
-                "end_window": 259,
+                "start_window": 245,
+                "end_window": 249,
+                "length_windows": 5,
+                "start_sec": 2450,
+                "end_sec": 2490
+              },
+              {
+                "start_window": 255,
+                "end_window": 260,
+                "length_windows": 6,
+                "start_sec": 2550,
+                "end_sec": 2600
+              },
+              {
+                "start_window": 281,
+                "end_window": 289,
+                "length_windows": 9,
+                "start_sec": 2810,
+                "end_sec": 2890
+              },
+              {
+                "start_window": 292,
+                "end_window": 295,
                 "length_windows": 4,
-                "start_sec": 2560,
-                "end_sec": 2590
+                "start_sec": 2920,
+                "end_sec": 2950
               },
               {
-                "start_window": 274,
-                "end_window": 276,
-                "length_windows": 3,
-                "start_sec": 2740,
-                "end_sec": 2760
+                "start_window": 297,
+                "end_window": 372,
+                "length_windows": 76,
+                "start_sec": 2970,
+                "end_sec": 3720
               },
               {
-                "start_window": 283,
-                "end_window": 287,
+                "start_window": 381,
+                "end_window": 385,
                 "length_windows": 5,
-                "start_sec": 2830,
-                "end_sec": 2870
-              },
-              {
-                "start_window": 298,
-                "end_window": 302,
-                "length_windows": 5,
-                "start_sec": 2980,
-                "end_sec": 3020
-              },
-              {
-                "start_window": 304,
-                "end_window": 353,
-                "length_windows": 50,
-                "start_sec": 3040,
-                "end_sec": 3530
-              },
-              {
-                "start_window": 361,
-                "end_window": 370,
-                "length_windows": 10,
-                "start_sec": 3610,
-                "end_sec": 3700
+                "start_sec": 3810,
+                "end_sec": 3850
               },
               {
                 "start_window": 387,
@@ -693,156 +688,170 @@
             "file": "telemetry_mixed_normal_infected_sample_tag_monero_normal_clean_1hz.csv",
             "rows": 6000,
             "confusion_matrix": {
-              "TP": 140,
-              "FP": 0,
-              "FN": 62,
-              "TN": 396
+              "TP": 174,
+              "FP": 47,
+              "FN": 29,
+              "TN": 348
             },
             "metrics": {
-              "precision": 1.0,
-              "recall": 0.693069306930693,
-              "f1_score": 0.8187134502923976,
-              "false_positive_rate": 0.0
+              "precision": 0.7873303167420814,
+              "recall": 0.8571428571428571,
+              "f1_score": 0.820754716981132,
+              "false_positive_rate": 0.1189873417721519
             },
-            "detection_delay_sec": -20
+            "detection_delay_sec": -580
           },
           {
             "windows": 598,
-            "score_min": -0.1439654584105674,
-            "score_mean": -0.055472497675832136,
-            "score_max": 0.08585096060967223,
-            "positive_windows": 131,
-            "positive_window_rate": 0.21906354515050167,
-            "first_event_start_sec": 1980,
+            "score_min": -0.12728290349554117,
+            "score_mean": -0.044537792231657485,
+            "score_max": 0.08251262359969747,
+            "positive_windows": 216,
+            "positive_window_rate": 0.3612040133779264,
+            "first_event_start_sec": 1420,
             "events": [
               {
+                "start_window": 142,
+                "end_window": 188,
+                "length_windows": 47,
+                "start_sec": 1420,
+                "end_sec": 1880
+              },
+              {
                 "start_window": 198,
-                "end_window": 288,
-                "length_windows": 91,
+                "end_window": 296,
+                "length_windows": 99,
                 "start_sec": 1980,
-                "end_sec": 2880
+                "end_sec": 2960
               },
               {
-                "start_window": 290,
-                "end_window": 293,
-                "length_windows": 4,
-                "start_sec": 2900,
-                "end_sec": 2930
+                "start_window": 305,
+                "end_window": 312,
+                "length_windows": 8,
+                "start_sec": 3050,
+                "end_sec": 3120
               },
               {
-                "start_window": 299,
-                "end_window": 301,
-                "length_windows": 3,
-                "start_sec": 2990,
-                "end_sec": 3010
-              },
-              {
-                "start_window": 317,
+                "start_window": 316,
                 "end_window": 319,
-                "length_windows": 3,
-                "start_sec": 3170,
+                "length_windows": 4,
+                "start_sec": 3160,
                 "end_sec": 3190
               },
               {
-                "start_window": 327,
-                "end_window": 330,
-                "length_windows": 4,
-                "start_sec": 3270,
-                "end_sec": 3300
+                "start_window": 324,
+                "end_window": 331,
+                "length_windows": 8,
+                "start_sec": 3240,
+                "end_sec": 3310
               },
               {
                 "start_window": 336,
-                "end_window": 338,
-                "length_windows": 3,
+                "end_window": 341,
+                "length_windows": 6,
                 "start_sec": 3360,
-                "end_sec": 3380
+                "end_sec": 3410
               },
               {
-                "start_window": 348,
-                "end_window": 350,
-                "length_windows": 3,
-                "start_sec": 3480,
-                "end_sec": 3500
+                "start_window": 347,
+                "end_window": 351,
+                "length_windows": 5,
+                "start_sec": 3470,
+                "end_sec": 3510
               },
               {
-                "start_window": 362,
-                "end_window": 364,
-                "length_windows": 3,
-                "start_sec": 3620,
-                "end_sec": 3640
+                "start_window": 354,
+                "end_window": 365,
+                "length_windows": 12,
+                "start_sec": 3540,
+                "end_sec": 3650
               },
               {
-                "start_window": 392,
-                "end_window": 394,
-                "length_windows": 3,
-                "start_sec": 3920,
-                "end_sec": 3940
+                "start_window": 371,
+                "end_window": 375,
+                "length_windows": 5,
+                "start_sec": 3710,
+                "end_sec": 3750
               },
               {
-                "start_window": 396,
+                "start_window": 377,
+                "end_window": 381,
+                "length_windows": 5,
+                "start_sec": 3770,
+                "end_sec": 3810
+              },
+              {
+                "start_window": 389,
                 "end_window": 399,
-                "length_windows": 4,
-                "start_sec": 3960,
+                "length_windows": 11,
+                "start_sec": 3890,
                 "end_sec": 3990
               }
             ],
             "file": "telemetry_mixed_normal_infected_sample_tag_monero_with_browser_act_normal_clean_1hz.csv",
             "rows": 6000,
             "confusion_matrix": {
-              "TP": 131,
-              "FP": 0,
-              "FN": 71,
-              "TN": 396
+              "TP": 169,
+              "FP": 47,
+              "FN": 34,
+              "TN": 348
             },
             "metrics": {
-              "precision": 1.0,
-              "recall": 0.6485148514851485,
-              "f1_score": 0.7867867867867867,
-              "false_positive_rate": 0.0
+              "precision": 0.7824074074074074,
+              "recall": 0.8325123152709359,
+              "f1_score": 0.8066825775656324,
+              "false_positive_rate": 0.1189873417721519
             },
-            "detection_delay_sec": -20
+            "detection_delay_sec": -580
           },
           {
             "windows": 598,
-            "score_min": -0.1439654584105674,
-            "score_mean": -0.0811391276070251,
-            "score_max": 0.05886488299760362,
-            "positive_windows": 3,
-            "positive_window_rate": 0.005016722408026756,
-            "first_event_start_sec": 2620,
+            "score_min": -0.12728290349554117,
+            "score_mean": -0.06965847614138118,
+            "score_max": 0.03828631975204122,
+            "positive_windows": 57,
+            "positive_window_rate": 0.09531772575250837,
+            "first_event_start_sec": 1420,
             "events": [
               {
-                "start_window": 262,
+                "start_window": 142,
+                "end_window": 188,
+                "length_windows": 47,
+                "start_sec": 1420,
+                "end_sec": 1880
+              },
+              {
+                "start_window": 261,
                 "end_window": 264,
-                "length_windows": 3,
-                "start_sec": 2620,
+                "length_windows": 4,
+                "start_sec": 2610,
                 "end_sec": 2640
               }
             ],
             "file": "telemetry_mixed_normal_stock_activity_infected_by_sample1_normal_clean_1hz.csv",
             "rows": 6000,
             "confusion_matrix": {
-              "TP": 3,
-              "FP": 0,
-              "FN": 199,
-              "TN": 396
+              "TP": 10,
+              "FP": 47,
+              "FN": 193,
+              "TN": 348
             },
             "metrics": {
-              "precision": 1.0,
-              "recall": 0.01485148514851485,
-              "f1_score": 0.029268292682926828,
-              "false_positive_rate": 0.0
+              "precision": 0.17543859649122806,
+              "recall": 0.04926108374384237,
+              "f1_score": 0.07692307692307693,
+              "false_positive_rate": 0.1189873417721519
             },
-            "detection_delay_sec": 620
+            "detection_delay_sec": -580
           }
         ]
       }
     },
     "one_class_svm": {
-      "threshold": 0.11150117766966178,
+      "threshold": 0.12605088831779432,
       "infected": {
         "model": "one_class_svm",
-        "threshold": 0.11150117766966178,
+        "threshold": 0.12605088831779432,
         "window_config": {
           "T": 30,
           "stride": 10
@@ -850,9 +859,9 @@
         "files": [
           {
             "windows": 508,
-            "score_min": 0.4503141916570023,
-            "score_mean": 0.450314827700849,
-            "score_max": 0.45031496487044204,
+            "score_min": 0.14440040453304132,
+            "score_mean": 0.3486494839962178,
+            "score_max": 0.3891771485466154,
             "positive_windows": 508,
             "positive_window_rate": 1.0,
             "first_event_start_sec": 0,
@@ -870,18 +879,25 @@
           },
           {
             "windows": 344,
-            "score_min": 0.4503140716270682,
-            "score_mean": 0.4503149320226035,
-            "score_max": 0.45031498470114495,
-            "positive_windows": 344,
-            "positive_window_rate": 1.0,
+            "score_min": 0.09932123897443668,
+            "score_mean": 0.379539615754895,
+            "score_max": 0.3952425640227167,
+            "positive_windows": 343,
+            "positive_window_rate": 0.997093023255814,
             "first_event_start_sec": 0,
             "events": [
               {
                 "start_window": 0,
-                "end_window": 343,
-                "length_windows": 344,
+                "end_window": 64,
+                "length_windows": 65,
                 "start_sec": 0,
+                "end_sec": 640
+              },
+              {
+                "start_window": 66,
+                "end_window": 343,
+                "length_windows": 278,
+                "start_sec": 660,
                 "end_sec": 3430
               }
             ],
@@ -890,9 +906,9 @@
           },
           {
             "windows": 345,
-            "score_min": 0.45031448307380095,
-            "score_mean": 0.4503149466433393,
-            "score_max": 0.45031498470114495,
+            "score_min": 0.21091497345005733,
+            "score_mean": 0.381900504647596,
+            "score_max": 0.3952425640227167,
             "positive_windows": 345,
             "positive_window_rate": 1.0,
             "first_event_start_sec": 0,
@@ -910,18 +926,53 @@
           },
           {
             "windows": 835,
-            "score_min": 0.4503138518321153,
-            "score_mean": 0.45031465201770227,
-            "score_max": 0.45031498470114495,
-            "positive_windows": 835,
-            "positive_window_rate": 1.0,
+            "score_min": 0.1106139561506237,
+            "score_mean": 0.3124567430891714,
+            "score_max": 0.3952425640227167,
+            "positive_windows": 826,
+            "positive_window_rate": 0.9892215568862276,
             "first_event_start_sec": 0,
             "events": [
               {
                 "start_window": 0,
-                "end_window": 834,
-                "length_windows": 835,
+                "end_window": 97,
+                "length_windows": 98,
                 "start_sec": 0,
+                "end_sec": 970
+              },
+              {
+                "start_window": 100,
+                "end_window": 142,
+                "length_windows": 43,
+                "start_sec": 1000,
+                "end_sec": 1420
+              },
+              {
+                "start_window": 145,
+                "end_window": 164,
+                "length_windows": 20,
+                "start_sec": 1450,
+                "end_sec": 1640
+              },
+              {
+                "start_window": 170,
+                "end_window": 189,
+                "length_windows": 20,
+                "start_sec": 1700,
+                "end_sec": 1890
+              },
+              {
+                "start_window": 191,
+                "end_window": 222,
+                "length_windows": 32,
+                "start_sec": 1910,
+                "end_sec": 2220
+              },
+              {
+                "start_window": 224,
+                "end_window": 834,
+                "length_windows": 611,
+                "start_sec": 2240,
                 "end_sec": 8340
               }
             ],
@@ -930,18 +981,88 @@
           },
           {
             "windows": 1101,
-            "score_min": 0.45031288788317236,
-            "score_mean": 0.45031476184379404,
-            "score_max": 0.4503149846980099,
-            "positive_windows": 1101,
-            "positive_window_rate": 1.0,
-            "first_event_start_sec": 0,
+            "score_min": -0.1950817232800401,
+            "score_mean": 0.32915805919142627,
+            "score_max": 0.3952414548561756,
+            "positive_windows": 1048,
+            "positive_window_rate": 0.9518619436875567,
+            "first_event_start_sec": 70,
             "events": [
               {
-                "start_window": 0,
+                "start_window": 7,
+                "end_window": 12,
+                "length_windows": 6,
+                "start_sec": 70,
+                "end_sec": 120
+              },
+              {
+                "start_window": 16,
+                "end_window": 19,
+                "length_windows": 4,
+                "start_sec": 160,
+                "end_sec": 190
+              },
+              {
+                "start_window": 40,
+                "end_window": 46,
+                "length_windows": 7,
+                "start_sec": 400,
+                "end_sec": 460
+              },
+              {
+                "start_window": 61,
+                "end_window": 68,
+                "length_windows": 8,
+                "start_sec": 610,
+                "end_sec": 680
+              },
+              {
+                "start_window": 70,
+                "end_window": 74,
+                "length_windows": 5,
+                "start_sec": 700,
+                "end_sec": 740
+              },
+              {
+                "start_window": 81,
+                "end_window": 152,
+                "length_windows": 72,
+                "start_sec": 810,
+                "end_sec": 1520
+              },
+              {
+                "start_window": 156,
+                "end_window": 185,
+                "length_windows": 30,
+                "start_sec": 1560,
+                "end_sec": 1850
+              },
+              {
+                "start_window": 187,
+                "end_window": 190,
+                "length_windows": 4,
+                "start_sec": 1870,
+                "end_sec": 1900
+              },
+              {
+                "start_window": 192,
+                "end_window": 199,
+                "length_windows": 8,
+                "start_sec": 1920,
+                "end_sec": 1990
+              },
+              {
+                "start_window": 201,
+                "end_window": 521,
+                "length_windows": 321,
+                "start_sec": 2010,
+                "end_sec": 5210
+              },
+              {
+                "start_window": 532,
                 "end_window": 1100,
-                "length_windows": 1101,
-                "start_sec": 0,
+                "length_windows": 569,
+                "start_sec": 5320,
                 "end_sec": 11000
               }
             ],
@@ -950,12 +1071,12 @@
           }
         ],
         "aggregate": {
-          "mean_positive_rate": 1.0
+          "mean_positive_rate": 0.9876353047659195
         }
       },
       "mixed": {
         "model": "one_class_svm",
-        "threshold": 0.11150117766966178,
+        "threshold": 0.12605088831779432,
         "window_config": {
           "T": 30,
           "stride": 10
@@ -965,177 +1086,709 @@
           "end": 4000
         },
         "aggregate_metrics": {
-          "mean_precision": 1.0,
-          "mean_recall": 1.0,
-          "mean_f1_score": 1.0,
-          "mean_false_positive_rate": 0.0,
-          "mean_detection_delay_sec": -20.0
+          "mean_precision": 0.5391267809661794,
+          "mean_recall": 0.9438423645320198,
+          "mean_f1_score": 0.6858193269325451,
+          "mean_false_positive_rate": 0.41782415326719125,
+          "mean_detection_delay_sec": -1950.0
         },
         "files": [
           {
             "windows": 598,
-            "score_min": -0.4390336803566529,
-            "score_mean": 0.03408739875523966,
-            "score_max": 0.45031498470114495,
-            "positive_windows": 202,
-            "positive_window_rate": 0.3377926421404682,
-            "first_event_start_sec": 1980,
+            "score_min": -0.3773358169347691,
+            "score_mean": 0.15717598278202108,
+            "score_max": 0.3952406121140931,
+            "positive_windows": 369,
+            "positive_window_rate": 0.617056856187291,
+            "first_event_start_sec": 50,
             "events": [
               {
-                "start_window": 198,
+                "start_window": 5,
+                "end_window": 8,
+                "length_windows": 4,
+                "start_sec": 50,
+                "end_sec": 80
+              },
+              {
+                "start_window": 12,
+                "end_window": 24,
+                "length_windows": 13,
+                "start_sec": 120,
+                "end_sec": 240
+              },
+              {
+                "start_window": 38,
+                "end_window": 47,
+                "length_windows": 10,
+                "start_sec": 380,
+                "end_sec": 470
+              },
+              {
+                "start_window": 94,
+                "end_window": 97,
+                "length_windows": 4,
+                "start_sec": 940,
+                "end_sec": 970
+              },
+              {
+                "start_window": 138,
+                "end_window": 189,
+                "length_windows": 52,
+                "start_sec": 1380,
+                "end_sec": 1890
+              },
+              {
+                "start_window": 196,
                 "end_window": 399,
-                "length_windows": 202,
-                "start_sec": 1980,
+                "length_windows": 204,
+                "start_sec": 1960,
                 "end_sec": 3990
+              },
+              {
+                "start_window": 405,
+                "end_window": 408,
+                "length_windows": 4,
+                "start_sec": 4050,
+                "end_sec": 4080
+              },
+              {
+                "start_window": 423,
+                "end_window": 427,
+                "length_windows": 5,
+                "start_sec": 4230,
+                "end_sec": 4270
+              },
+              {
+                "start_window": 495,
+                "end_window": 501,
+                "length_windows": 7,
+                "start_sec": 4950,
+                "end_sec": 5010
+              },
+              {
+                "start_window": 508,
+                "end_window": 512,
+                "length_windows": 5,
+                "start_sec": 5080,
+                "end_sec": 5120
+              },
+              {
+                "start_window": 548,
+                "end_window": 555,
+                "length_windows": 8,
+                "start_sec": 5480,
+                "end_sec": 5550
+              },
+              {
+                "start_window": 560,
+                "end_window": 570,
+                "length_windows": 11,
+                "start_sec": 5600,
+                "end_sec": 5700
+              },
+              {
+                "start_window": 580,
+                "end_window": 583,
+                "length_windows": 4,
+                "start_sec": 5800,
+                "end_sec": 5830
+              },
+              {
+                "start_window": 587,
+                "end_window": 597,
+                "length_windows": 11,
+                "start_sec": 5870,
+                "end_sec": 5970
               }
             ],
             "file": "telemetry_mixed_normal_browser_YTSAGCYTW_infected_by_sample1_normal_clean_1hz.csv",
             "rows": 6000,
             "confusion_matrix": {
-              "TP": 202,
-              "FP": 0,
+              "TP": 203,
+              "FP": 166,
               "FN": 0,
-              "TN": 396
+              "TN": 229
             },
             "metrics": {
-              "precision": 1.0,
+              "precision": 0.5501355013550135,
               "recall": 1.0,
-              "f1_score": 1.0,
-              "false_positive_rate": 0.0
+              "f1_score": 0.7097902097902098,
+              "false_positive_rate": 0.42025316455696204
             },
-            "detection_delay_sec": -20
+            "detection_delay_sec": -1950
           },
           {
             "windows": 573,
-            "score_min": -0.4390336803566529,
-            "score_mean": 0.044154417056810565,
-            "score_max": 0.45031498470114495,
-            "positive_windows": 202,
-            "positive_window_rate": 0.3525305410122164,
-            "first_event_start_sec": 1980,
+            "score_min": -0.3773358169347691,
+            "score_mean": 0.11013456134894009,
+            "score_max": 0.3952425640227167,
+            "positive_windows": 346,
+            "positive_window_rate": 0.6038394415357766,
+            "first_event_start_sec": 50,
             "events": [
               {
-                "start_window": 198,
+                "start_window": 5,
+                "end_window": 8,
+                "length_windows": 4,
+                "start_sec": 50,
+                "end_sec": 80
+              },
+              {
+                "start_window": 12,
+                "end_window": 24,
+                "length_windows": 13,
+                "start_sec": 120,
+                "end_sec": 240
+              },
+              {
+                "start_window": 38,
+                "end_window": 47,
+                "length_windows": 10,
+                "start_sec": 380,
+                "end_sec": 470
+              },
+              {
+                "start_window": 94,
+                "end_window": 97,
+                "length_windows": 4,
+                "start_sec": 940,
+                "end_sec": 970
+              },
+              {
+                "start_window": 138,
+                "end_window": 189,
+                "length_windows": 52,
+                "start_sec": 1380,
+                "end_sec": 1890
+              },
+              {
+                "start_window": 196,
+                "end_window": 297,
+                "length_windows": 102,
+                "start_sec": 1960,
+                "end_sec": 2970
+              },
+              {
+                "start_window": 300,
+                "end_window": 342,
+                "length_windows": 43,
+                "start_sec": 3000,
+                "end_sec": 3420
+              },
+              {
+                "start_window": 345,
+                "end_window": 364,
+                "length_windows": 20,
+                "start_sec": 3450,
+                "end_sec": 3640
+              },
+              {
+                "start_window": 370,
+                "end_window": 389,
+                "length_windows": 20,
+                "start_sec": 3700,
+                "end_sec": 3890
+              },
+              {
+                "start_window": 391,
                 "end_window": 399,
-                "length_windows": 202,
-                "start_sec": 1980,
+                "length_windows": 9,
+                "start_sec": 3910,
                 "end_sec": 3990
+              },
+              {
+                "start_window": 405,
+                "end_window": 408,
+                "length_windows": 4,
+                "start_sec": 4050,
+                "end_sec": 4080
+              },
+              {
+                "start_window": 423,
+                "end_window": 427,
+                "length_windows": 5,
+                "start_sec": 4230,
+                "end_sec": 4270
+              },
+              {
+                "start_window": 495,
+                "end_window": 501,
+                "length_windows": 7,
+                "start_sec": 4950,
+                "end_sec": 5010
+              },
+              {
+                "start_window": 508,
+                "end_window": 512,
+                "length_windows": 5,
+                "start_sec": 5080,
+                "end_sec": 5120
+              },
+              {
+                "start_window": 548,
+                "end_window": 555,
+                "length_windows": 8,
+                "start_sec": 5480,
+                "end_sec": 5550
+              },
+              {
+                "start_window": 560,
+                "end_window": 570,
+                "length_windows": 11,
+                "start_sec": 5600,
+                "end_sec": 5700
               }
             ],
             "file": "telemetry_mixed_normal_infected_normal_clean_1hz.csv",
             "rows": 5752,
             "confusion_matrix": {
-              "TP": 202,
-              "FP": 0,
-              "FN": 0,
-              "TN": 371
+              "TP": 195,
+              "FP": 151,
+              "FN": 8,
+              "TN": 219
             },
             "metrics": {
-              "precision": 1.0,
-              "recall": 1.0,
-              "f1_score": 1.0,
-              "false_positive_rate": 0.0
+              "precision": 0.5635838150289018,
+              "recall": 0.9605911330049262,
+              "f1_score": 0.7103825136612023,
+              "false_positive_rate": 0.4081081081081081
             },
-            "detection_delay_sec": -20
+            "detection_delay_sec": -1950
           },
           {
             "windows": 598,
-            "score_min": -0.4390336803566529,
-            "score_mean": 0.03408743809297949,
-            "score_max": 0.45031498470114495,
-            "positive_windows": 202,
-            "positive_window_rate": 0.3377926421404682,
-            "first_event_start_sec": 1980,
+            "score_min": -0.3773358169347691,
+            "score_mean": 0.16854095757983137,
+            "score_max": 0.3952425640227167,
+            "positive_windows": 368,
+            "positive_window_rate": 0.6153846153846154,
+            "first_event_start_sec": 50,
             "events": [
               {
-                "start_window": 198,
+                "start_window": 5,
+                "end_window": 8,
+                "length_windows": 4,
+                "start_sec": 50,
+                "end_sec": 80
+              },
+              {
+                "start_window": 12,
+                "end_window": 24,
+                "length_windows": 13,
+                "start_sec": 120,
+                "end_sec": 240
+              },
+              {
+                "start_window": 38,
+                "end_window": 47,
+                "length_windows": 10,
+                "start_sec": 380,
+                "end_sec": 470
+              },
+              {
+                "start_window": 94,
+                "end_window": 97,
+                "length_windows": 4,
+                "start_sec": 940,
+                "end_sec": 970
+              },
+              {
+                "start_window": 138,
+                "end_window": 189,
+                "length_windows": 52,
+                "start_sec": 1380,
+                "end_sec": 1890
+              },
+              {
+                "start_window": 196,
+                "end_window": 264,
+                "length_windows": 69,
+                "start_sec": 1960,
+                "end_sec": 2640
+              },
+              {
+                "start_window": 266,
                 "end_window": 399,
-                "length_windows": 202,
-                "start_sec": 1980,
+                "length_windows": 134,
+                "start_sec": 2660,
                 "end_sec": 3990
+              },
+              {
+                "start_window": 405,
+                "end_window": 408,
+                "length_windows": 4,
+                "start_sec": 4050,
+                "end_sec": 4080
+              },
+              {
+                "start_window": 423,
+                "end_window": 427,
+                "length_windows": 5,
+                "start_sec": 4230,
+                "end_sec": 4270
+              },
+              {
+                "start_window": 495,
+                "end_window": 501,
+                "length_windows": 7,
+                "start_sec": 4950,
+                "end_sec": 5010
+              },
+              {
+                "start_window": 508,
+                "end_window": 512,
+                "length_windows": 5,
+                "start_sec": 5080,
+                "end_sec": 5120
+              },
+              {
+                "start_window": 548,
+                "end_window": 555,
+                "length_windows": 8,
+                "start_sec": 5480,
+                "end_sec": 5550
+              },
+              {
+                "start_window": 560,
+                "end_window": 570,
+                "length_windows": 11,
+                "start_sec": 5600,
+                "end_sec": 5700
+              },
+              {
+                "start_window": 580,
+                "end_window": 583,
+                "length_windows": 4,
+                "start_sec": 5800,
+                "end_sec": 5830
+              },
+              {
+                "start_window": 587,
+                "end_window": 597,
+                "length_windows": 11,
+                "start_sec": 5870,
+                "end_sec": 5970
               }
             ],
             "file": "telemetry_mixed_normal_infected_sample_tag_monero_normal_clean_1hz.csv",
             "rows": 6000,
             "confusion_matrix": {
               "TP": 202,
-              "FP": 0,
-              "FN": 0,
-              "TN": 396
+              "FP": 166,
+              "FN": 1,
+              "TN": 229
             },
             "metrics": {
-              "precision": 1.0,
-              "recall": 1.0,
-              "f1_score": 1.0,
-              "false_positive_rate": 0.0
+              "precision": 0.5489130434782609,
+              "recall": 0.9950738916256158,
+              "f1_score": 0.7075306479859894,
+              "false_positive_rate": 0.42025316455696204
             },
-            "detection_delay_sec": -20
+            "detection_delay_sec": -1950
           },
           {
             "windows": 598,
-            "score_min": -0.4390336803566529,
-            "score_mean": 0.03408745019313888,
-            "score_max": 0.45031498470114495,
-            "positive_windows": 202,
-            "positive_window_rate": 0.3377926421404682,
-            "first_event_start_sec": 1980,
+            "score_min": -0.3773358169347691,
+            "score_mean": 0.17135212085374943,
+            "score_max": 0.3952425640227167,
+            "positive_windows": 369,
+            "positive_window_rate": 0.617056856187291,
+            "first_event_start_sec": 50,
             "events": [
               {
-                "start_window": 198,
+                "start_window": 5,
+                "end_window": 8,
+                "length_windows": 4,
+                "start_sec": 50,
+                "end_sec": 80
+              },
+              {
+                "start_window": 12,
+                "end_window": 24,
+                "length_windows": 13,
+                "start_sec": 120,
+                "end_sec": 240
+              },
+              {
+                "start_window": 38,
+                "end_window": 47,
+                "length_windows": 10,
+                "start_sec": 380,
+                "end_sec": 470
+              },
+              {
+                "start_window": 94,
+                "end_window": 97,
+                "length_windows": 4,
+                "start_sec": 940,
+                "end_sec": 970
+              },
+              {
+                "start_window": 138,
+                "end_window": 189,
+                "length_windows": 52,
+                "start_sec": 1380,
+                "end_sec": 1890
+              },
+              {
+                "start_window": 196,
                 "end_window": 399,
-                "length_windows": 202,
-                "start_sec": 1980,
+                "length_windows": 204,
+                "start_sec": 1960,
                 "end_sec": 3990
+              },
+              {
+                "start_window": 405,
+                "end_window": 408,
+                "length_windows": 4,
+                "start_sec": 4050,
+                "end_sec": 4080
+              },
+              {
+                "start_window": 423,
+                "end_window": 427,
+                "length_windows": 5,
+                "start_sec": 4230,
+                "end_sec": 4270
+              },
+              {
+                "start_window": 495,
+                "end_window": 501,
+                "length_windows": 7,
+                "start_sec": 4950,
+                "end_sec": 5010
+              },
+              {
+                "start_window": 508,
+                "end_window": 512,
+                "length_windows": 5,
+                "start_sec": 5080,
+                "end_sec": 5120
+              },
+              {
+                "start_window": 548,
+                "end_window": 555,
+                "length_windows": 8,
+                "start_sec": 5480,
+                "end_sec": 5550
+              },
+              {
+                "start_window": 560,
+                "end_window": 570,
+                "length_windows": 11,
+                "start_sec": 5600,
+                "end_sec": 5700
+              },
+              {
+                "start_window": 580,
+                "end_window": 583,
+                "length_windows": 4,
+                "start_sec": 5800,
+                "end_sec": 5830
+              },
+              {
+                "start_window": 587,
+                "end_window": 597,
+                "length_windows": 11,
+                "start_sec": 5870,
+                "end_sec": 5970
               }
             ],
             "file": "telemetry_mixed_normal_infected_sample_tag_monero_with_browser_act_normal_clean_1hz.csv",
             "rows": 6000,
             "confusion_matrix": {
-              "TP": 202,
-              "FP": 0,
+              "TP": 203,
+              "FP": 166,
               "FN": 0,
-              "TN": 396
+              "TN": 229
             },
             "metrics": {
-              "precision": 1.0,
+              "precision": 0.5501355013550135,
               "recall": 1.0,
-              "f1_score": 1.0,
-              "false_positive_rate": 0.0
+              "f1_score": 0.7097902097902098,
+              "false_positive_rate": 0.42025316455696204
             },
-            "detection_delay_sec": -20
+            "detection_delay_sec": -1950
           },
           {
             "windows": 598,
-            "score_min": -0.4390336803566529,
-            "score_mean": 0.03408728724873833,
-            "score_max": 0.45031498470114356,
-            "positive_windows": 202,
-            "positive_window_rate": 0.3377926421404682,
-            "first_event_start_sec": 1980,
+            "score_min": -0.3773358169347691,
+            "score_mean": 0.12393043177729718,
+            "score_max": 0.3952268599301796,
+            "positive_windows": 321,
+            "positive_window_rate": 0.5367892976588629,
+            "first_event_start_sec": 50,
             "events": [
               {
-                "start_window": 198,
+                "start_window": 5,
+                "end_window": 8,
+                "length_windows": 4,
+                "start_sec": 50,
+                "end_sec": 80
+              },
+              {
+                "start_window": 12,
+                "end_window": 24,
+                "length_windows": 13,
+                "start_sec": 120,
+                "end_sec": 240
+              },
+              {
+                "start_window": 38,
+                "end_window": 47,
+                "length_windows": 10,
+                "start_sec": 380,
+                "end_sec": 470
+              },
+              {
+                "start_window": 94,
+                "end_window": 97,
+                "length_windows": 4,
+                "start_sec": 940,
+                "end_sec": 970
+              },
+              {
+                "start_window": 138,
+                "end_window": 189,
+                "length_windows": 52,
+                "start_sec": 1380,
+                "end_sec": 1890
+              },
+              {
+                "start_window": 207,
+                "end_window": 212,
+                "length_windows": 6,
+                "start_sec": 2070,
+                "end_sec": 2120
+              },
+              {
+                "start_window": 216,
+                "end_window": 219,
+                "length_windows": 4,
+                "start_sec": 2160,
+                "end_sec": 2190
+              },
+              {
+                "start_window": 240,
+                "end_window": 246,
+                "length_windows": 7,
+                "start_sec": 2400,
+                "end_sec": 2460
+              },
+              {
+                "start_window": 261,
+                "end_window": 268,
+                "length_windows": 8,
+                "start_sec": 2610,
+                "end_sec": 2680
+              },
+              {
+                "start_window": 270,
+                "end_window": 274,
+                "length_windows": 5,
+                "start_sec": 2700,
+                "end_sec": 2740
+              },
+              {
+                "start_window": 281,
+                "end_window": 352,
+                "length_windows": 72,
+                "start_sec": 2810,
+                "end_sec": 3520
+              },
+              {
+                "start_window": 356,
+                "end_window": 385,
+                "length_windows": 30,
+                "start_sec": 3560,
+                "end_sec": 3850
+              },
+              {
+                "start_window": 387,
+                "end_window": 390,
+                "length_windows": 4,
+                "start_sec": 3870,
+                "end_sec": 3900
+              },
+              {
+                "start_window": 392,
                 "end_window": 399,
-                "length_windows": 202,
-                "start_sec": 1980,
+                "length_windows": 8,
+                "start_sec": 3920,
                 "end_sec": 3990
+              },
+              {
+                "start_window": 405,
+                "end_window": 408,
+                "length_windows": 4,
+                "start_sec": 4050,
+                "end_sec": 4080
+              },
+              {
+                "start_window": 423,
+                "end_window": 427,
+                "length_windows": 5,
+                "start_sec": 4230,
+                "end_sec": 4270
+              },
+              {
+                "start_window": 495,
+                "end_window": 501,
+                "length_windows": 7,
+                "start_sec": 4950,
+                "end_sec": 5010
+              },
+              {
+                "start_window": 508,
+                "end_window": 512,
+                "length_windows": 5,
+                "start_sec": 5080,
+                "end_sec": 5120
+              },
+              {
+                "start_window": 548,
+                "end_window": 555,
+                "length_windows": 8,
+                "start_sec": 5480,
+                "end_sec": 5550
+              },
+              {
+                "start_window": 560,
+                "end_window": 570,
+                "length_windows": 11,
+                "start_sec": 5600,
+                "end_sec": 5700
+              },
+              {
+                "start_window": 580,
+                "end_window": 583,
+                "length_windows": 4,
+                "start_sec": 5800,
+                "end_sec": 5830
+              },
+              {
+                "start_window": 587,
+                "end_window": 597,
+                "length_windows": 11,
+                "start_sec": 5870,
+                "end_sec": 5970
               }
             ],
             "file": "telemetry_mixed_normal_stock_activity_infected_by_sample1_normal_clean_1hz.csv",
             "rows": 6000,
             "confusion_matrix": {
-              "TP": 202,
-              "FP": 0,
-              "FN": 0,
-              "TN": 396
+              "TP": 155,
+              "FP": 166,
+              "FN": 48,
+              "TN": 229
             },
             "metrics": {
-              "precision": 1.0,
-              "recall": 1.0,
-              "f1_score": 1.0,
-              "false_positive_rate": 0.0
+              "precision": 0.48286604361370716,
+              "recall": 0.7635467980295566,
+              "f1_score": 0.5916030534351144,
+              "false_positive_rate": 0.42025316455696204
             },
-            "detection_delay_sec": -20
+            "detection_delay_sec": -1950
           }
         ]
       }

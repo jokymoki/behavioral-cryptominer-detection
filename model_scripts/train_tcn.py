@@ -37,7 +37,8 @@ def load_npz(path):
     Y_val = data["Y_val"]
     mu = data["mu"]
     sigma = data["sigma"]
-    return X_train, Y_train, X_val, Y_val, mu, sigma
+    feature_columns = data["feature_columns"].astype(str).tolist()
+    return X_train, Y_train, X_val, Y_val, mu, sigma, feature_columns
 
 
 class WindowDataset(Dataset):
@@ -134,7 +135,7 @@ def evaluate(model, loader, criterion):
 
 
 def main():
-    X_train, Y_train, X_val, Y_val, mu, sigma = load_npz(NPZ_PATH)
+    X_train, Y_train, X_val, Y_val, mu, sigma, feature_columns = load_npz(NPZ_PATH)
 
     mu_t = torch.from_numpy(mu.astype(np.float32))
     sigma_t = torch.from_numpy(sigma.astype(np.float32))
@@ -157,6 +158,7 @@ def main():
 
     print("Train shape:", X_train.shape, Y_train.shape)
     print("Val shape:", X_val.shape, Y_val.shape)
+    print("Feature columns:", len(feature_columns))
 
     xb, yb = next(iter(train_loader))
     print("One batch X/Y:", xb.shape, yb.shape)
@@ -230,6 +232,7 @@ def main():
                 "val_loss": avg_val_loss,
                 "mu": mu_t,
                 "sigma": sigma_t,
+                "feature_columns": feature_columns,
                 "train_losses": train_losses,
                 "val_losses": val_losses,
             },
@@ -248,6 +251,7 @@ def main():
                     "val_loss": avg_val_loss,
                     "mu": mu_t,
                     "sigma": sigma_t,
+                    "feature_columns": feature_columns,
                     "train_losses": train_losses,
                     "val_losses": val_losses,
                 },

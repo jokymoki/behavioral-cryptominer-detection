@@ -1,10 +1,10 @@
 {
-  "num_val_windows": 665,
-  "std_score_mean": 0.26624026894569397,
-  "std_score_std": 0.2575521767139435,
+  "num_val_windows": 590,
+  "std_score_mean": 0.25335097312927246,
+  "std_score_std": 0.2783295512199402,
   "std_score_min": 0.0,
-  "std_score_max": 2.022376298904419,
-  "std_score_p95": 0.7096226215362549,
-  "std_score_p99": 1.2577353715896606,
-  "recommended_threshold": 1.2577353715896606
+  "std_score_max": 3.0066676139831543,
+  "std_score_p95": 0.6366063952445984,
+  "std_score_p99": 1.4750630855560303,
+  "recommended_threshold": 1.4750630855560303
 }

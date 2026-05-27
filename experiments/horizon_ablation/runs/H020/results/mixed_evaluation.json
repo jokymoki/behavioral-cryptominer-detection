@@ -1,7 +1,7 @@
 {
   "horizon": 20,
   "score_key": "std_score_top5",
-  "threshold": 1.2458878755569458,
+  "threshold": 1.2135459184646606,
   "window_config": {
     "T": 120,
     "H": 20,
@@ -12,11 +12,11 @@
     "end": 4000
   },
   "aggregate_metrics": {
-    "mean_precision": 0.8839984266609454,
-    "mean_recall": 0.980281690140845,
-    "mean_f1_score": 0.9296530561742143,
-    "mean_false_positive_rate": 0.07421969569281214,
-    "mean_detection_delay_sec": -130.0
+    "mean_precision": 0.867414772854049,
+    "mean_recall": 0.964319248826291,
+    "mean_f1_score": 0.9132981869712544,
+    "mean_false_positive_rate": 0.08506810903574767,
+    "mean_detection_delay_sec": -230.0
   },
   "files": [
     {
@@ -24,31 +24,38 @@
       "rows": 6000,
       "windows": 587,
       "score_min": 0.0,
-      "score_mean": 187.44912719726562,
-      "score_max": 685.6531982421875,
-      "positive_windows": 236,
-      "positive_window_rate": 0.4020442930153322,
+      "score_mean": 45.40239334106445,
+      "score_max": 202.9621124267578,
+      "positive_windows": 238,
+      "positive_window_rate": 0.40545144804088584,
       "confusion_matrix": {
-        "TP": 208,
-        "FP": 28,
-        "FN": 5,
-        "TN": 346
+        "TP": 206,
+        "FP": 32,
+        "FN": 7,
+        "TN": 342
       },
       "metrics": {
-        "precision": 0.8813559322033898,
-        "recall": 0.9765258215962441,
-        "f1_score": 0.9265033407572383,
-        "false_positive_rate": 0.0748663101604278
+        "precision": 0.865546218487395,
+        "recall": 0.9671361502347418,
+        "f1_score": 0.9135254988913525,
+        "false_positive_rate": 0.0855614973262032
       },
-      "first_event_start_sec": 1870,
-      "detection_delay_sec": -130,
+      "first_event_start_sec": 1770,
+      "detection_delay_sec": -230,
       "events": [
         {
+          "start_window": 177,
+          "end_window": 180,
+          "length_windows": 4,
+          "start_sec": 1770,
+          "end_sec": 1800
+        },
+        {
           "start_window": 187,
-          "end_window": 394,
-          "length_windows": 208,
+          "end_window": 392,
+          "length_windows": 206,
           "start_sec": 1870,
-          "end_sec": 3940
+          "end_sec": 3920
         },
         {
           "start_window": 561,
@@ -65,31 +72,38 @@
       "rows": 5752,
       "windows": 562,
       "score_min": 0.0,
-      "score_mean": 215.00584411621094,
-      "score_max": 6274.50390625,
-      "positive_windows": 236,
-      "positive_window_rate": 0.4199288256227758,
+      "score_mean": 102.29882049560547,
+      "score_max": 5400.00341796875,
+      "positive_windows": 235,
+      "positive_window_rate": 0.4181494661921708,
       "confusion_matrix": {
-        "TP": 211,
-        "FP": 25,
-        "FN": 2,
-        "TN": 324
+        "TP": 206,
+        "FP": 29,
+        "FN": 7,
+        "TN": 320
       },
       "metrics": {
-        "precision": 0.8940677966101694,
-        "recall": 0.9906103286384976,
-        "f1_score": 0.9398663697104677,
-        "false_positive_rate": 0.07163323782234957
+        "precision": 0.8765957446808511,
+        "recall": 0.9671361502347418,
+        "f1_score": 0.9196428571428572,
+        "false_positive_rate": 0.0830945558739255
       },
-      "first_event_start_sec": 1870,
-      "detection_delay_sec": -130,
+      "first_event_start_sec": 1770,
+      "detection_delay_sec": -230,
       "events": [
         {
+          "start_window": 177,
+          "end_window": 180,
+          "length_windows": 4,
+          "start_sec": 1770,
+          "end_sec": 1800
+        },
+        {
           "start_window": 187,
-          "end_window": 397,
-          "length_windows": 211,
+          "end_window": 392,
+          "length_windows": 206,
           "start_sec": 1870,
-          "end_sec": 3970
+          "end_sec": 3920
         }
       ],
       "scores_path": "runs\\H020\\scores\\mixed\\telemetry_mixed_normal_infected_normal_clean_1hz_scores.pt"
@@ -99,31 +113,38 @@
       "rows": 6000,
       "windows": 587,
       "score_min": 0.0,
-      "score_mean": 205.13702392578125,
-      "score_max": 2462.8115234375,
-      "positive_windows": 236,
-      "positive_window_rate": 0.4020442930153322,
+      "score_mean": 77.47750854492188,
+      "score_max": 1987.407470703125,
+      "positive_windows": 237,
+      "positive_window_rate": 0.403747870528109,
       "confusion_matrix": {
-        "TP": 208,
-        "FP": 28,
-        "FN": 5,
-        "TN": 346
+        "TP": 205,
+        "FP": 32,
+        "FN": 8,
+        "TN": 342
       },
       "metrics": {
-        "precision": 0.8813559322033898,
-        "recall": 0.9765258215962441,
-        "f1_score": 0.9265033407572383,
-        "false_positive_rate": 0.0748663101604278
+        "precision": 0.8649789029535865,
+        "recall": 0.9624413145539906,
+        "f1_score": 0.9111111111111111,
+        "false_positive_rate": 0.0855614973262032
       },
-      "first_event_start_sec": 1870,
-      "detection_delay_sec": -130,
+      "first_event_start_sec": 1770,
+      "detection_delay_sec": -230,
       "events": [
         {
+          "start_window": 177,
+          "end_window": 180,
+          "length_windows": 4,
+          "start_sec": 1770,
+          "end_sec": 1800
+        },
+        {
           "start_window": 187,
-          "end_window": 394,
-          "length_windows": 208,
+          "end_window": 389,
+          "length_windows": 203,
           "start_sec": 1870,
-          "end_sec": 3940
+          "end_sec": 3890
         },
         {
           "start_window": 561,
@@ -140,31 +161,38 @@
       "rows": 6000,
       "windows": 587,
       "score_min": 0.0,
-      "score_mean": 284.7580871582031,
-      "score_max": 18199.44140625,
-      "positive_windows": 236,
-      "positive_window_rate": 0.4020442930153322,
+      "score_mean": 139.876953125,
+      "score_max": 23248.40625,
+      "positive_windows": 238,
+      "positive_window_rate": 0.40545144804088584,
       "confusion_matrix": {
-        "TP": 208,
-        "FP": 28,
-        "FN": 5,
-        "TN": 346
+        "TP": 206,
+        "FP": 32,
+        "FN": 7,
+        "TN": 342
       },
       "metrics": {
-        "precision": 0.8813559322033898,
-        "recall": 0.9765258215962441,
-        "f1_score": 0.9265033407572383,
-        "false_positive_rate": 0.0748663101604278
+        "precision": 0.865546218487395,
+        "recall": 0.9671361502347418,
+        "f1_score": 0.9135254988913525,
+        "false_positive_rate": 0.0855614973262032
       },
-      "first_event_start_sec": 1870,
-      "detection_delay_sec": -130,
+      "first_event_start_sec": 1770,
+      "detection_delay_sec": -230,
       "events": [
         {
+          "start_window": 177,
+          "end_window": 180,
+          "length_windows": 4,
+          "start_sec": 1770,
+          "end_sec": 1800
+        },
+        {
           "start_window": 187,
-          "end_window": 394,
-          "length_windows": 208,
+          "end_window": 392,
+          "length_windows": 206,
           "start_sec": 1870,
-          "end_sec": 3940
+          "end_sec": 3920
         },
         {
           "start_window": 561,
@@ -181,31 +209,38 @@
       "rows": 6000,
       "windows": 587,
       "score_min": 0.0,
-      "score_mean": 149.5406951904297,
-      "score_max": 774.5574951171875,
-      "positive_windows": 237,
-      "positive_window_rate": 0.403747870528109,
+      "score_mean": 28.29047393798828,
+      "score_max": 302.48101806640625,
+      "positive_windows": 236,
+      "positive_window_rate": 0.4020442930153322,
       "confusion_matrix": {
-        "TP": 209,
-        "FP": 28,
-        "FN": 4,
-        "TN": 346
+        "TP": 204,
+        "FP": 32,
+        "FN": 9,
+        "TN": 342
       },
       "metrics": {
-        "precision": 0.8818565400843882,
-        "recall": 0.9812206572769953,
-        "f1_score": 0.9288888888888889,
-        "false_positive_rate": 0.0748663101604278
+        "precision": 0.864406779661017,
+        "recall": 0.9577464788732394,
+        "f1_score": 0.9086859688195992,
+        "false_positive_rate": 0.0855614973262032
       },
-      "first_event_start_sec": 1870,
-      "detection_delay_sec": -130,
+      "first_event_start_sec": 1770,
+      "detection_delay_sec": -230,
       "events": [
         {
+          "start_window": 177,
+          "end_window": 180,
+          "length_windows": 4,
+          "start_sec": 1770,
+          "end_sec": 1800
+        },
+        {
           "start_window": 187,
-          "end_window": 395,
-          "length_windows": 209,
+          "end_window": 389,
+          "length_windows": 203,
           "start_sec": 1870,
-          "end_sec": 3950
+          "end_sec": 3890
         },
         {
           "start_window": 561,

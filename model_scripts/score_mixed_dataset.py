@@ -21,6 +21,7 @@ from project_config import (
     TIME_COL,
     TRUE_INFECTED_END_SEC,
     TRUE_INFECTED_START_SEC,
+    get_feature_columns,
 )
 
 
@@ -54,7 +55,7 @@ def load_reference_columns() -> list[str]:
         raise FileNotFoundError(f"No normal cleaned files in {CLEAN_NORMAL_DIR}")
 
     ref = pd.read_csv(normal_files[0], nrows=1)
-    return [c for c in ref.columns if c != TIME_COL]
+    return get_feature_columns(ref.columns)
 
 
 def load_feature_frame(csv_path: Path, reference_cols: list[str]) -> tuple[pd.Series, np.ndarray]:
@@ -62,7 +63,7 @@ def load_feature_frame(csv_path: Path, reference_cols: list[str]) -> tuple[pd.Se
     if TIME_COL not in df.columns:
         raise ValueError(f"{csv_path.name}: missing required column {TIME_COL}")
 
-    current_cols = [c for c in df.columns if c != TIME_COL]
+    current_cols = get_feature_columns(df.columns)
     missing = sorted(set(reference_cols) - set(current_cols))
     extra = sorted(set(current_cols) - set(reference_cols))
     if missing or extra:

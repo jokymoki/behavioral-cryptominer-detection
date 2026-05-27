@@ -6,7 +6,7 @@ import numpy as np
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT_ROOT))
 
-from project_config import H, NORMAL_HOLDOUT_FILES, S, T, TIME_COL
+from project_config import H, NORMAL_HOLDOUT_FILES, S, T, get_feature_columns
 
 BASE_DIR = PROJECT_ROOT
 CLEAN_DIR = BASE_DIR / "clean_data" / "normal"
@@ -53,9 +53,11 @@ def main():
     # ---- Single file test (first file) ----
     f0 = files[0]
     df0 = pd.read_csv(f0)
-    X0 = df0.drop(columns=[TIME_COL]).to_numpy(dtype=np.float32)
+    feature_columns = get_feature_columns(df0.columns)
+    X0 = df0[feature_columns].to_numpy(dtype=np.float32)
 
     print("File:", f0.name)
+    print("Feature columns:", len(feature_columns))
     print("X shape (N, D):", X0.shape)
 
     N0, D0 = X0.shape
@@ -76,7 +78,10 @@ def main():
 
     for f in files:
         df = pd.read_csv(f)
-        X = df.drop(columns=[TIME_COL]).to_numpy(dtype=np.float32)
+        current_feature_columns = get_feature_columns(df.columns)
+        if current_feature_columns != feature_columns:
+            raise ValueError(f"{f.name}: feature columns do not match reference file")
+        X = df[feature_columns].to_numpy(dtype=np.float32)
 
         X_past, Y_future = make_windows(X, T, H, S)
         if X_past.shape[0] > 0:
@@ -140,6 +145,7 @@ def main():
         Y_val=Y_val.astype(np.float32),
         mu=mu.astype(np.float32),
         sigma=sigma.astype(np.float32),
+        feature_columns=np.array(feature_columns),
     )
 
     print("Saved dataset to:", out_path.resolve())

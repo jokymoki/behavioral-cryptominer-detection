@@ -2,6 +2,9 @@
   "horizon": 10,
   "T": 30,
   "S": 10,
+  "excluded_holdout_normal_files": [
+    "telemetry_Spotify_clean_1hz.csv"
+  ],
   "normal_files": [
     {
       "file": "telemetry_gaming_1_clean_1hz.csv",
@@ -24,11 +27,6 @@
       "windows": 358
     },
     {
-      "file": "telemetry_Spotify_clean_1hz.csv",
-      "rows": 3752,
-      "windows": 372
-    },
-    {
       "file": "telemetry_Twitch_clean_1hz.csv",
       "rows": 7466,
       "windows": 743
@@ -39,9 +37,9 @@
       "windows": 502
     }
   ],
-  "total_windows": 3322,
-  "train_windows": 2657,
-  "val_windows": 665,
-  "features": 31,
+  "total_windows": 2950,
+  "train_windows": 2360,
+  "val_windows": 590,
+  "features": 26,
   "dataset_path": "runs\\T030\\dataset\\windows.npz"
 }

@@ -21,7 +21,7 @@ EXP_DIR = Path(__file__).resolve().parent
 PROJECT_DIR = EXP_DIR.parents[1]
 sys.path.insert(0, str(PROJECT_DIR))
 
-from project_config import NORMAL_HOLDOUT_FILES
+from project_config import NORMAL_HOLDOUT_FILES, TIME_COL, get_feature_columns
 
 CLEAN_NORMAL_DIR = PROJECT_DIR / "clean_data" / "normal"
 CLEAN_INFECTED_DIR = PROJECT_DIR / "clean_data" / "infected"
@@ -31,7 +31,6 @@ RUNS_DIR = EXP_DIR / "runs"
 TABLE_DIR = EXP_DIR / "tables"
 FIG_DIR = EXP_DIR / "figures"
 
-TIME_COL = "ts"
 T = 120
 S = 10
 DEFAULT_HORIZONS = [1, 5, 10, 20, 30]
@@ -56,7 +55,7 @@ def read_reference_columns() -> list[str]:
     if not files:
         raise FileNotFoundError(f"No normal CSV files in {CLEAN_NORMAL_DIR}")
     df = pd.read_csv(files[0], nrows=1)
-    return [c for c in df.columns if c != TIME_COL]
+    return get_feature_columns(df.columns)
 
 
 def validate_columns(path: Path, reference_cols: list[str]) -> pd.DataFrame:
@@ -64,7 +63,7 @@ def validate_columns(path: Path, reference_cols: list[str]) -> pd.DataFrame:
     if TIME_COL not in df.columns:
         raise ValueError(f"{path.name}: missing {TIME_COL}")
 
-    current_cols = [c for c in df.columns if c != TIME_COL]
+    current_cols = get_feature_columns(df.columns)
     if current_cols != reference_cols:
         missing = sorted(set(reference_cols) - set(current_cols))
         extra = sorted(set(current_cols) - set(reference_cols))

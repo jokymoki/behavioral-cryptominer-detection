@@ -1,7 +1,7 @@
 {
   "horizon": 10,
   "score_key": "std_score_top5",
-  "threshold": 1.1926366090774536,
+  "threshold": 1.3194748163223267,
   "window_config": {
     "T": 60,
     "H": 10,
@@ -12,9 +12,9 @@
     "end": 4000
   },
   "aggregate_metrics": {
-    "mean_precision": 0.8856335691112079,
-    "mean_recall": 0.9922330097087378,
-    "mean_f1_score": 0.935903425360139,
+    "mean_precision": 0.8846411811481973,
+    "mean_recall": 0.9825242718446601,
+    "mean_f1_score": 0.9310038405922938,
     "mean_false_positive_rate": 0.06889324358865127,
     "mean_detection_delay_sec": -60.0
   },
@@ -24,20 +24,20 @@
       "rows": 6000,
       "windows": 594,
       "score_min": 0.0,
-      "score_mean": 206.0963134765625,
-      "score_max": 692.0235595703125,
-      "positive_windows": 232,
-      "positive_window_rate": 0.39057239057239057,
+      "score_mean": 39.83385467529297,
+      "score_max": 219.42141723632812,
+      "positive_windows": 230,
+      "positive_window_rate": 0.3872053872053872,
       "confusion_matrix": {
-        "TP": 205,
+        "TP": 203,
         "FP": 27,
-        "FN": 1,
+        "FN": 3,
         "TN": 361
       },
       "metrics": {
-        "precision": 0.8836206896551724,
-        "recall": 0.9951456310679612,
-        "f1_score": 0.9360730593607306,
+        "precision": 0.8826086956521739,
+        "recall": 0.9854368932038835,
+        "f1_score": 0.9311926605504587,
         "false_positive_rate": 0.06958762886597938
       },
       "first_event_start_sec": 1940,
@@ -45,10 +45,10 @@
       "events": [
         {
           "start_window": 194,
-          "end_window": 398,
-          "length_windows": 205,
+          "end_window": 396,
+          "length_windows": 203,
           "start_sec": 1940,
-          "end_sec": 3980
+          "end_sec": 3960
         },
         {
           "start_window": 568,
@@ -65,20 +65,20 @@
       "rows": 5752,
       "windows": 569,
       "score_min": 0.0,
-      "score_mean": 181.10882568359375,
-      "score_max": 6692.22412109375,
-      "positive_windows": 229,
-      "positive_window_rate": 0.4024604569420035,
+      "score_mean": 78.79679870605469,
+      "score_max": 5794.0908203125,
+      "positive_windows": 226,
+      "positive_window_rate": 0.39718804920913886,
       "confusion_matrix": {
-        "TP": 205,
+        "TP": 202,
         "FP": 24,
-        "FN": 1,
+        "FN": 4,
         "TN": 339
       },
       "metrics": {
-        "precision": 0.8951965065502183,
-        "recall": 0.9951456310679612,
-        "f1_score": 0.9425287356321839,
+        "precision": 0.8938053097345132,
+        "recall": 0.9805825242718447,
+        "f1_score": 0.9351851851851852,
         "false_positive_rate": 0.06611570247933884
       },
       "first_event_start_sec": 1940,
@@ -86,10 +86,10 @@
       "events": [
         {
           "start_window": 194,
-          "end_window": 398,
-          "length_windows": 205,
+          "end_window": 395,
+          "length_windows": 202,
           "start_sec": 1940,
-          "end_sec": 3980
+          "end_sec": 3950
         }
       ],
       "scores_path": "runs\\T060\\scores\\mixed\\telemetry_mixed_normal_infected_normal_clean_1hz_scores.pt"
@@ -99,20 +99,20 @@
       "rows": 6000,
       "windows": 594,
       "score_min": 0.0,
-      "score_mean": 220.9051971435547,
-      "score_max": 4153.7138671875,
-      "positive_windows": 231,
-      "positive_window_rate": 0.3888888888888889,
+      "score_mean": 70.99816131591797,
+      "score_max": 3378.739013671875,
+      "positive_windows": 229,
+      "positive_window_rate": 0.38552188552188554,
       "confusion_matrix": {
-        "TP": 204,
+        "TP": 202,
         "FP": 27,
-        "FN": 2,
+        "FN": 4,
         "TN": 361
       },
       "metrics": {
-        "precision": 0.8831168831168831,
-        "recall": 0.9902912621359223,
-        "f1_score": 0.9336384439359269,
+        "precision": 0.8820960698689956,
+        "recall": 0.9805825242718447,
+        "f1_score": 0.928735632183908,
         "false_positive_rate": 0.06958762886597938
       },
       "first_event_start_sec": 1940,
@@ -120,10 +120,10 @@
       "events": [
         {
           "start_window": 194,
-          "end_window": 397,
-          "length_windows": 204,
+          "end_window": 395,
+          "length_windows": 202,
           "start_sec": 1940,
-          "end_sec": 3970
+          "end_sec": 3950
         },
         {
           "start_window": 568,
@@ -140,8 +140,8 @@
       "rows": 6000,
       "windows": 594,
       "score_min": 0.0,
-      "score_mean": 299.3955078125,
-      "score_max": 32840.16015625,
+      "score_mean": 120.3952407836914,
+      "score_max": 39323.7734375,
       "positive_windows": 231,
       "positive_window_rate": 0.3888888888888889,
       "confusion_matrix": {
@@ -181,20 +181,20 @@
       "rows": 6000,
       "windows": 594,
       "score_min": 0.0,
-      "score_mean": 154.95213317871094,
-      "score_max": 679.0067749023438,
-      "positive_windows": 231,
-      "positive_window_rate": 0.3888888888888889,
+      "score_mean": 23.603042602539062,
+      "score_max": 225.9119110107422,
+      "positive_windows": 228,
+      "positive_window_rate": 0.3838383838383838,
       "confusion_matrix": {
-        "TP": 204,
+        "TP": 201,
         "FP": 27,
-        "FN": 2,
+        "FN": 5,
         "TN": 361
       },
       "metrics": {
-        "precision": 0.8831168831168831,
-        "recall": 0.9902912621359223,
-        "f1_score": 0.9336384439359269,
+        "precision": 0.881578947368421,
+        "recall": 0.9757281553398058,
+        "f1_score": 0.9262672811059908,
         "false_positive_rate": 0.06958762886597938
       },
       "first_event_start_sec": 1940,
@@ -202,10 +202,17 @@
       "events": [
         {
           "start_window": 194,
-          "end_window": 397,
-          "length_windows": 204,
+          "end_window": 230,
+          "length_windows": 37,
           "start_sec": 1940,
-          "end_sec": 3970
+          "end_sec": 2300
+        },
+        {
+          "start_window": 232,
+          "end_window": 395,
+          "length_windows": 164,
+          "start_sec": 2320,
+          "end_sec": 3950
         },
         {
           "start_window": 568,
